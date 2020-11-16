@@ -1,12 +1,12 @@
 import React from "react";
 import HamburgerMenu from "react-hamburger-menu";
 
-export default function Hamburger({ isOpen, handleClick }) {
+export default function Hamburger({ isOpen, handleOpen }) {
     return (
         <div>
             <HamburgerMenu
                 isOpen={isOpen}
-                menuClicked={handleClick}
+                menuClicked={handleOpen}
                 width={18}
                 height={15}
                 strokeWidth={2}
