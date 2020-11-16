@@ -2,7 +2,7 @@ import React from "react";
 
 import LogoSvg from "../../atoms/logo";
 
-import "./Nav.sass";
+import "./navStyle.sass";
 
 export default function NavBar() {
     return (
