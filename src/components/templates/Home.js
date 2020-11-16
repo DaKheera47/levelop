@@ -28,6 +28,27 @@ export default function Home() {
                 imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
                 imgAlt="typing"
             />
+
+            <Post
+                author="Zain Abbas"
+                title="This is a demo of only fourteen words that are allowed this is another!"
+                imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
+                imgAlt="typing"
+            />
+
+            <Post
+                author="Zain Abbas"
+                title="This is a demo of only fourteen words that are allowed this is another!"
+                imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
+                imgAlt="typing"
+            />
+
+            <Post
+                author="Zain Abbas"
+                title="This is a demo of only fourteen words that are allowed this is another!"
+                imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
+                imgAlt="typing"
+            />
         </div>
     );
 }
