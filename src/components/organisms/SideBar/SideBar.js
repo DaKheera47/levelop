@@ -1,17 +1,35 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { Turn as Hamburger } from "hamburger-react";
+
 import "./SideBar.sass";
-import { SideBarContext } from "../../../components/contexts/SideBarContext";
 
 export default function SideBar() {
-    const sideBarState = useContext(SideBarContext);
+    const [isOpen, setIsOpen] = useState(false);
 
-    if (sideBarState.isSideBarOpen) {
-        return (
-            <div className="sidebar">
-                <h5>This si rocket league</h5>
+    const toggleSideBar = () => {
+        setIsOpen(!isOpen);
+    };
+
+    return (
+        <>
+            <div onClick={toggleSideBar}>
+                <Hamburger
+                    toggled={isOpen}
+                    color="white"
+                    size={20}
+                    direction="right"
+                    hideOutline={true}
+                />
             </div>
-        );
-    } else {
-        return null;
-    }
+
+            {isOpen && (
+                <div className="side-bar">
+                    <h1 className="side-bar-item highlighted">New Post</h1>
+                    <h1 className="side-bar-item active">Feed</h1>
+                    <h1 className="side-bar-item">Settings</h1>
+                    <h1 className="side-bar-item">Saved</h1>
+                </div>
+            )}
+        </>
+    );
 }

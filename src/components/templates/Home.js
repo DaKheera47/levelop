@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Post from "../molecules/Post/Post";
-import SideBar from "../organisms/SideBar/SideBar";
 import NavBar from "../organisms/Nav/Nav";
 
 import { SideBarContext } from "../contexts/SideBarContext";
@@ -8,12 +7,11 @@ import { SideBarContext } from "../contexts/SideBarContext";
 import "./homeStyle.sass";
 
 export default function Home() {
-    const sideBarState = useContext(SideBarContext);
+    // const sideBarState = useContext(SideBarContext);
 
     return (
         <div className="home-page">
             <NavBar />
-            <SideBar />
 
             <div className="home-posts">
                 <Post

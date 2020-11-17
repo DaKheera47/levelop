@@ -1,5 +1,26 @@
-.sidebar
-    background-color: green
-    width: 50vw
-    height: 90vh
+@import "../../../theme"
+
+.side-bar
+    background-color: $primary-cream
+    width: 40vw
+    height: 100vh
     position: absolute
+    top: 55px
+    left: 0
+
+    box-shadow: 4px 0px 24px 0px rgba(0, 0, 0, 0.1)
+
+    padding: 25px
+    padding-top: 35vh
+
+.side-bar-item
+    color: #A0A0A0
+    font-weight: 600
+
+.side-bar-item.active
+    @extend .side-bar-item
+    color: #000
+
+.side-bar-item.highlighted
+    @extend .side-bar-item
+    color: $primary-orange
