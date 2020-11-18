@@ -1,18 +1,27 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./components/templates/Home";
+import Settings from "./components/templates/Settings";
+
+import NavBar from "./components/organisms/Nav/Nav";
+
 import { SideBarProvider } from "./components/contexts/SideBarContext";
 
 export default function App() {
     return (
-        <div>
+        <>
+            <SideBarProvider>
+                <NavBar />
+            </SideBarProvider>
+
             <Switch>
+                <Route path="/settings">
+                    <Settings />
+                </Route>
                 <Route path="/">
-                    <SideBarProvider>
-                        <Home />
-                    </SideBarProvider>
+                    <Home />
                 </Route>
             </Switch>
-        </div>
+        </>
     );
 }

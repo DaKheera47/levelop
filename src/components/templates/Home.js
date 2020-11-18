@@ -1,18 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import Post from "../molecules/Post/Post";
-import NavBar from "../organisms/Nav/Nav";
-
-import { SideBarContext } from "../contexts/SideBarContext";
 
 import "./homeStyle.sass";
 
 export default function Home() {
-    // const sideBarState = useContext(SideBarContext);
-
     return (
         <div className="home-page">
-            <NavBar />
-
             <div className="home-posts">
                 <Post
                     author="Zain Abbas"

@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Turn as Hamburger } from "hamburger-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { NavLink } from "react-router-dom";
+import { SideBarContext } from "../../contexts/SideBarContext";
 
 import "./SideBar.sass";
 
 export default function SideBar() {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggleSideBar = () => {
-        setIsOpen(!isOpen);
-    };
+    const { toggleSideBar, isSideBarOpen } = useContext(SideBarContext);
 
     return (
         <>
             <div onClick={toggleSideBar}>
                 <Hamburger
-                    toggled={isOpen}
+                    toggled={isSideBarOpen}
                     color="white"
                     size={20}
                     direction="right"
@@ -24,7 +22,7 @@ export default function SideBar() {
             </div>
 
             <AnimatePresence>
-                {isOpen && (
+                {isSideBarOpen && (
                     <motion.div
                         className="side-bar"
                         initial={{ translateX: -250, opacity: 0 }}
@@ -32,10 +30,34 @@ export default function SideBar() {
                         transition={{ duration: 0.25 }}
                         exit={{ translateX: -250, opacity: 0 }}
                     >
-                        <h1 className="side-bar-item highlighted">New Post</h1>
-                        <h1 className="side-bar-item active">Feed</h1>
-                        <h1 className="side-bar-item">Settings</h1>
-                        <h1 className="side-bar-item">Saved</h1>
+                        <NavLink
+                            className="side-bar-item highlighted"
+                            to="/"
+                            activeClassName="active"
+                        >
+                            New Post
+                        </NavLink>
+                        <NavLink
+                            className="side-bar-item"
+                            to="/"
+                            activeClassName="active"
+                        >
+                            Feed
+                        </NavLink>
+                        <NavLink
+                            className="side-bar-item"
+                            to="/settings"
+                            activeClassName="active"
+                        >
+                            Settings
+                        </NavLink>
+                        <NavLink
+                            className="side-bar-item"
+                            to="/"
+                            activeClassName="active"
+                        >
+                            Saved
+                        </NavLink>
                     </motion.div>
                 )}
             </AnimatePresence>
