@@ -1,11 +1,16 @@
 import React from "react";
 import Post from "../molecules/Post/Post";
+import { motion } from "framer-motion";
 
 import "./homeStyle.sass";
 
 export default function Home() {
     return (
-        <div className="home-page">
+        <motion.div
+            className="home-page"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+        >
             <div className="home-posts">
                 <Post
                     author="Zain Abbas"
@@ -73,6 +78,6 @@ export default function Home() {
                     imgAlt="typing"
                 />
             </div>
-        </div>
+        </motion.div>
     );
 }

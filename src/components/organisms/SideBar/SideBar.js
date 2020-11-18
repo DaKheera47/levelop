@@ -12,8 +12,6 @@ export default function SideBar() {
         SideBarContext
     );
 
-    console.log(isSideBarOpen);
-
     return (
         <>
             <div onClick={toggleSideBar}>
@@ -32,10 +30,10 @@ export default function SideBar() {
                 {isSideBarOpen && (
                     <motion.div
                         className="side-bar"
-                        initial={{ translateX: -250, opacity: 0 }}
-                        animate={{ translateX: 0, opacity: 1 }}
-                        transition={{ duration: 0.25 }}
-                        exit={{ translateX: -250, opacity: 0 }}
+                        initial={{ translateX: -250 }}
+                        animate={{ translateX: 0 }}
+                        transition={{ duration: 0.2 }}
+                        exit={{ translateX: -250 }}
                     >
                         <div className="side-bar-item-container">
                             <NavLink
