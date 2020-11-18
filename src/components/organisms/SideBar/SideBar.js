@@ -1,24 +1,31 @@
 import React, { useContext } from "react";
-import { Turn as Hamburger } from "hamburger-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { SideBarContext } from "../../contexts/SideBarContext";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { CgClose } from "react-icons/cg";
 
 import "./SideBar.sass";
 
 export default function SideBar() {
-    const { toggleSideBar, isSideBarOpen } = useContext(SideBarContext);
+    const { toggleSideBar, isSideBarOpen, closeSideBar } = useContext(
+        SideBarContext
+    );
+
+    console.log(isSideBarOpen);
 
     return (
         <>
             <div onClick={toggleSideBar}>
-                <Hamburger
-                    toggled={isSideBarOpen}
-                    color="white"
-                    size={20}
-                    direction="right"
-                    hideOutline={true}
-                />
+                {isSideBarOpen ? (
+                    <CgClose className="side-bar-ham" color="white" size={22} />
+                ) : (
+                    <GiHamburgerMenu
+                        className="side-bar-ham"
+                        color="white"
+                        size={22}
+                    />
+                )}
             </div>
 
             <AnimatePresence>
@@ -30,34 +37,49 @@ export default function SideBar() {
                         transition={{ duration: 0.25 }}
                         exit={{ translateX: -250, opacity: 0 }}
                     >
-                        <NavLink
-                            className="side-bar-item highlighted"
-                            to="/"
-                            activeClassName="active"
-                        >
-                            New Post
-                        </NavLink>
-                        <NavLink
-                            className="side-bar-item"
-                            to="/"
-                            activeClassName="active"
-                        >
-                            Feed
-                        </NavLink>
-                        <NavLink
-                            className="side-bar-item"
-                            to="/settings"
-                            activeClassName="active"
-                        >
-                            Settings
-                        </NavLink>
-                        <NavLink
-                            className="side-bar-item"
-                            to="/"
-                            activeClassName="active"
-                        >
-                            Saved
-                        </NavLink>
+                        <div className="side-bar-item-container">
+                            <NavLink
+                                className="side-bar-item highlighted"
+                                to="/new-post"
+                                activeClassName="active"
+                                onClick={() => {
+                                    closeSideBar();
+                                }}
+                            >
+                                New Post
+                            </NavLink>
+                            <NavLink
+                                className="side-bar-item"
+                                to="/"
+                                exact
+                                activeClassName="active"
+                                onClick={() => {
+                                    closeSideBar();
+                                }}
+                            >
+                                Feed
+                            </NavLink>
+                            <NavLink
+                                className="side-bar-item"
+                                to="/settings"
+                                activeClassName="active"
+                                onClick={() => {
+                                    closeSideBar();
+                                }}
+                            >
+                                Settings
+                            </NavLink>
+                            <NavLink
+                                className="side-bar-item"
+                                to="/saved"
+                                activeClassName="active"
+                                onClick={() => {
+                                    closeSideBar();
+                                }}
+                            >
+                                Saved
+                            </NavLink>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

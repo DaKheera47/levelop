@@ -16,10 +16,14 @@ export default function App() {
 
             <Switch>
                 <Route path="/settings">
-                    <Settings />
+                    <SideBarProvider>
+                        <Settings />
+                    </SideBarProvider>
                 </Route>
-                <Route path="/">
-                    <Home />
+                <Route exact path="/">
+                    <SideBarProvider>
+                        <Home />
+                    </SideBarProvider>
                 </Route>
             </Switch>
         </>

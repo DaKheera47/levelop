@@ -5407,11 +5407,6 @@ gzip-size@5.1.1:
     duplexer "^0.1.1"
     pify "^4.0.1"
 
-hamburger-react@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/hamburger-react/-/hamburger-react-2.3.0.tgz#4a083d1719f82d6a3b861c7190f59398d5e8bf2c"
-  integrity sha512-0JqyhuF+irS7Tqzw2JqZGg3bkTDoc4LAV9/ObqVLcogCC4UevzmiHbCaWgWKGDnbwsCKaZf4ekvTCmi1UUVeJA==
-
 handle-thing@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"
