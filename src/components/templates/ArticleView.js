@@ -9,6 +9,18 @@ import ArticleHeader from "../molecules/ArticleHeader/ArticleHeader";
 import ArticleComments from "../molecules/ArticleComments/ArticleComments";
 
 export default function ArticleView() {
+    const comments = [
+        {
+            author: "Horse Ammar",
+            content:
+                "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
+        },
+        {
+            author: "Horse Ammar",
+            content:
+                "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
+        },
+    ];
     return (
         <motion.div
             className="article-page"
@@ -52,8 +64,7 @@ export default function ArticleView() {
                 <VscBookmark color="#fa6400" size={30} />
             </div>
 
-            <ArticleComments />
-
+            <ArticleComments comments={comments} />
         </motion.div>
     );
 }
