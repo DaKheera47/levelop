@@ -14,10 +14,9 @@ export default function Post({ title, imgSrc, imgAlt, author, postUrl }) {
                 <Image className="post-img" src={imgSrc} alt={imgAlt} />
                 <Link className="post-title" to={postUrl}>
                     {title}
+                    <Author className="post-author" name={author} />
                 </Link>
             </div>
-
-            <Author className="post-author" name={author} />
         </div>
     );
 }
