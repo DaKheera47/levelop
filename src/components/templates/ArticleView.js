@@ -1,13 +1,17 @@
 import React from "react";
 
 import "./ArticleView.sass";
-import Title from "../atoms/Title";
+import ArticleHeader from "../molecules/ArticleHeader/ArticleHeader";
 
 export default function ArticleView() {
     return (
         <div className="article-page">
-            <Title className="article-title" text="How to learn node.js with mongoDB in just 15 days!" />
-            <hr size="1" />
+            <ArticleHeader
+                author="Shaheer"
+                time="5"
+                title="How to learn nodejs and mongodb from scratch!"
+                profileUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
+            />
         </div>
     );
 }
