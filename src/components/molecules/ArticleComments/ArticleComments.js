@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "../../atoms/Title";
 import Comment from "../Comment/Comment";
+import CallToAction from "../../atoms/CallToAction";
 
 import "./ArticleComments.sass";
 
@@ -8,7 +9,6 @@ export default function ArticleComments({}) {
     return (
         <div>
             <Title className="comments-title" text="Comments" />
-            <hr size="1" color="#fa6400" />
 
             <Comment
                 author="Ammar Kashif"
@@ -24,6 +24,10 @@ export default function ArticleComments({}) {
                         velit mollit. Exercitation veniam consequat sunt nostrud
                         amet."
             />
+
+            <div className="comments-load-container">
+                <CallToAction className="comments-load" text="Load More" />
+            </div>
         </div>
     );
 }

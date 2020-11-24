@@ -5,6 +5,7 @@ import "./Comment.sass";
 export default function Comment({ author, content }) {
     return (
         <div>
+            <hr color="#fa6400" size="1" />
             <div className="comment-body">
                 <div>
                     <img
@@ -18,7 +19,6 @@ export default function Comment({ author, content }) {
                     <p className="comment-content">{content}</p>
                 </div>
             </div>
-            <hr color="#fa6400" size="1" />
         </div>
     );
 }
