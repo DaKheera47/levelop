@@ -1,8 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+import { AiOutlineLike, AiOutlineShareAlt } from "react-icons/ai";
+import { VscBookmark } from "react-icons/vsc";
+
 import "./ArticleView.sass";
 import ArticleHeader from "../molecules/ArticleHeader/ArticleHeader";
+import ArticleComments from "../molecules/ArticleComments/ArticleComments";
 
 export default function ArticleView() {
     return (
@@ -41,6 +45,15 @@ export default function ArticleView() {
                     mollit. Exercitation veniam consequat sunt nostrud amet.
                 </p>
             </div>
+
+            <div>
+                <AiOutlineLike color="#fa6400" size={30} />
+                <AiOutlineShareAlt color="#fa6400" size={30} />
+                <VscBookmark color="#fa6400" size={30} />
+            </div>
+
+            <ArticleComments />
+
         </motion.div>
     );
 }
