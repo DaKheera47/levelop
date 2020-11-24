@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "./components/templates/Home";
 import Settings from "./components/templates/Settings";
+import ArticleView from "./components/templates/ArticleView";
 
 import NavBar from "./components/organisms/Nav/Nav";
 
@@ -15,11 +16,16 @@ export default function App() {
             </SideBarProvider>
 
             <Switch>
-                <Route path="/settings">
+                <Route exact path="/article">
+                    <ArticleView />
+                </Route>
+
+                <Route exact path="/settings">
                     <SideBarProvider>
                         <Settings />
                     </SideBarProvider>
                 </Route>
+
                 <Route exact path="/">
                     <SideBarProvider>
                         <Home />

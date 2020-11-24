@@ -17,6 +17,7 @@ export default function Home() {
                     title="My experience learning how to type slower!"
                     imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
                     imgAlt="typing"
+                    postUrl="/article"
                 />
 
                 <Post
@@ -24,25 +25,14 @@ export default function Home() {
                     title="My experience learning how to type slower!"
                     imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
                     imgAlt="typing"
+                    postUrl="/article"
                 />
                 <Post
                     author="Zain Abbas"
                     title="My experience learning how to type slower!"
                     imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
                     imgAlt="typing"
-                />
-
-                <Post
-                    author="Zain Abbas"
-                    title="My experience learning how to type slower!"
-                    imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
-                    imgAlt="typing"
-                />
-                <Post
-                    author="Zain Abbas"
-                    title="My experience learning how to type slower!"
-                    imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
-                    imgAlt="typing"
+                    postUrl="/article"
                 />
 
                 <Post
@@ -50,25 +40,14 @@ export default function Home() {
                     title="My experience learning how to type slower!"
                     imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
                     imgAlt="typing"
+                    postUrl="/article"
                 />
                 <Post
                     author="Zain Abbas"
                     title="My experience learning how to type slower!"
                     imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
                     imgAlt="typing"
-                />
-
-                <Post
-                    author="Zain Abbas"
-                    title="My experience learning how to type slower!"
-                    imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
-                    imgAlt="typing"
-                />
-                <Post
-                    author="Zain Abbas"
-                    title="My experience learning how to type slower!"
-                    imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
-                    imgAlt="typing"
+                    postUrl="/article"
                 />
 
                 <Post
@@ -76,6 +55,37 @@ export default function Home() {
                     title="My experience learning how to type slower!"
                     imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
                     imgAlt="typing"
+                    postUrl="/article"
+                />
+                <Post
+                    author="Zain Abbas"
+                    title="My experience learning how to type slower!"
+                    imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
+                    imgAlt="typing"
+                    postUrl="/article"
+                />
+
+                <Post
+                    author="Zain Abbas"
+                    title="My experience learning how to type slower!"
+                    imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
+                    imgAlt="typing"
+                    postUrl="/article"
+                />
+                <Post
+                    author="Zain Abbas"
+                    title="My experience learning how to type slower!"
+                    imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
+                    imgAlt="typing"
+                    postUrl="/article"
+                />
+
+                <Post
+                    author="Zain Abbas"
+                    title="My experience learning how to type slower!"
+                    imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
+                    imgAlt="typing"
+                    postUrl="/article"
                 />
             </div>
         </motion.div>

@@ -5,6 +5,8 @@ import { SideBarContext } from "../../contexts/SideBarContext";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgClose } from "react-icons/cg";
 
+import CallToAction from "../../atoms/CallToAction";
+
 import "./SideBar.sass";
 
 export default function SideBar() {
@@ -46,6 +48,7 @@ export default function SideBar() {
                             >
                                 New Post
                             </NavLink>
+
                             <NavLink
                                 className="side-bar-item"
                                 to="/"
@@ -57,6 +60,7 @@ export default function SideBar() {
                             >
                                 Feed
                             </NavLink>
+
                             <NavLink
                                 className="side-bar-item"
                                 to="/settings"
@@ -67,6 +71,7 @@ export default function SideBar() {
                             >
                                 Settings
                             </NavLink>
+
                             <NavLink
                                 className="side-bar-item"
                                 to="/saved"
@@ -78,6 +83,12 @@ export default function SideBar() {
                                 Saved
                             </NavLink>
                         </div>
+
+                        <CallToAction className="side-bar-CTA" text="Sign Up" />
+                        <CallToAction
+                            className="side-bar-secondary-CTA"
+                            text="Log In"
+                        />
                     </motion.div>
                 )}
             </AnimatePresence>
