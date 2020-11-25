@@ -7,7 +7,7 @@ export default function ArticleHeader({ author, time, title, profileUrl }) {
         <div>
             <Title className="article-title" text={title} />
 
-            <hr size="1" />
+            <hr size="1" color="#FA6400" />
 
             <AuthorArticle author={author} time={time} imageSrc={profileUrl} />
         </div>

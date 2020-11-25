@@ -21,6 +21,7 @@ export default function ArticleView() {
                 "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
         },
     ];
+
     return (
         <motion.div
             className="article-page"
@@ -59,9 +60,21 @@ export default function ArticleView() {
             </div>
 
             <div>
-                <AiOutlineLike color="#fa6400" size={30} />
-                <AiOutlineShareAlt color="#fa6400" size={30} />
-                <VscBookmark color="#fa6400" size={30} />
+                <AiOutlineLike
+                    style={{ margin: "0 5px" }}
+                    color="#fa6400"
+                    size={30}
+                />
+                <AiOutlineShareAlt
+                    style={{ margin: "0 5px" }}
+                    color="#fa6400"
+                    size={30}
+                />
+                <VscBookmark
+                    style={{ margin: "0 5px" }}
+                    color="#fa6400"
+                    size={30}
+                />
             </div>
 
             <ArticleComments comments={comments} />

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { NavLink } from "react-router-dom";
 import { SideBarContext } from "../../contexts/SideBarContext";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaRegPlusSquare } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
 
 import CallToAction from "../../atoms/CallToAction";
@@ -66,21 +67,45 @@ export default function SideBar() {
                         <div className="side-bar-content">
                             <div className="side-bar-item-container">
                                 {navLinksPaths.map((e) => (
-                                    <NavLink
-                                        className={
-                                            e.isHighlighted
-                                                ? "side-bar-item highlighted"
-                                                : "side-bar-item"
-                                        }
-                                        exact
-                                        to={e.to}
-                                        activeClassName="active"
-                                        onClick={() => {
-                                            closeSideBar();
-                                        }}
-                                    >
-                                        {e.text}
-                                    </NavLink>
+                                    <>
+                                        {e.isHighlighted ? (
+                                            <NavLink
+                                                className="side-bar-item highlighted"
+                                                exact
+                                                to={e.to}
+                                                activeClassName="active"
+                                                onClick={() => {
+                                                    closeSideBar();
+                                                }}
+                                            >
+                                                {e.isHighlighted && (
+                                                    <FaRegPlusSquare
+                                                        // somehow only inline styles work here because they are applied to the element instead of to a class
+                                                        style={{
+                                                            marginRight: "10px",
+                                                            height: "25px",
+                                                            verticalAlign:
+                                                                "text-top",
+                                                            marginTop: "4px",
+                                                        }}
+                                                    />
+                                                )}
+                                                {e.text}
+                                            </NavLink>
+                                        ) : (
+                                            <NavLink
+                                                className="side-bar-item"
+                                                exact
+                                                to={e.to}
+                                                activeClassName="active"
+                                                onClick={() => {
+                                                    closeSideBar();
+                                                }}
+                                            >
+                                                {e.text}
+                                            </NavLink>
+                                        )}
+                                    </>
                                 ))}
                             </div>
 
