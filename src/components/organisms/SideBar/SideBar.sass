@@ -1,5 +1,14 @@
 @import "../../../theme"
 
+.side-bar-click-detector
+    width: 100vw
+    position: absolute
+    top: 55px
+    left: 0
+    height: 100vh
+
+    z-index: 1
+
 .side-bar
     background-color: $primary-cream
     width: 40vw
@@ -11,6 +20,7 @@
     box-shadow: 4px 0px 24px 0px rgba(0, 0, 0, 0.1)
 
     padding: 25px
+    z-index: 2
 
 .side-bar-ham
     margin: 15px
@@ -19,6 +29,7 @@
 .side-bar-content
     position: absolute
     bottom: 30vh
+    z-index: 2
 
 .side-bar-CTA
     width: 148px

@@ -8,9 +8,7 @@ import SideBarContent from "../../molecules/SideBarContent/SideBarContent";
 import "./SideBar.sass";
 
 export default function SideBar() {
-    const { toggleSideBar, isSideBarOpen } = useContext(
-        SideBarContext
-    );
+    const { toggleSideBar, isSideBarOpen, closeSideBar } = useContext(SideBarContext);
 
     const navLinksPaths = [
         {
@@ -51,20 +49,23 @@ export default function SideBar() {
 
             <AnimatePresence>
                 {isSideBarOpen && (
-                    <motion.div
-                        className="side-bar"
-                        initial={{ translateX: -250 }}
-                        animate={{ translateX: 0 }}
-                        transition={{
-                            duration: 0.3,
-                            ease: [0.55, 0.79, 0.55, 0.81],
-                        }}
-                        exit={{ translateX: -250 }}
-                    >
-                        <div className="side-bar-content">
-                            <SideBarContent navLinksPaths={navLinksPaths} />
-                        </div>
-                    </motion.div>
+                    <>
+                        <div className="side-bar-click-detector" onClick={closeSideBar}></div>
+                        <motion.div
+                            className="side-bar"
+                            initial={{ translateX: -250 }}
+                            animate={{ translateX: 0 }}
+                            transition={{
+                                duration: 0.3,
+                                ease: [0.55, 0.79, 0.55, 0.81],
+                            }}
+                            exit={{ translateX: -250 }}
+                        >
+                            <div className="side-bar-content">
+                                <SideBarContent navLinksPaths={navLinksPaths} />
+                            </div>
+                        </motion.div>
+                    </>
                 )}
             </AnimatePresence>
         </>
