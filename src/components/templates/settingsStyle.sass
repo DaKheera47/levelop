@@ -27,7 +27,33 @@
     white-space: nowrap
 
 .settings-slider-selector-container
+    margin-top: 20px
     width: 100%
     display: flex
     justify-content: space-between
     align-items: center
+
+.settings-slider-selector-text
+    font-size: 16px
+
+.settings-button-selector-container
+    margin-top: 20px
+    width: 100%
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+.settings-button-selector-button-connected
+    border: 2px solid #a4a4a4
+    color: #a4a4a4
+    font-weight: 600
+    font-family: $default-font
+    padding-top: 2px
+    padding-bottom: 2px
+    background: none
+    border-radius: 3px
+
+.settings-button-selector-button-disconnected
+    @extend .settings-button-selector-button-connected
+    border: 2px solid $primary-orange
+    color: $primary-orange

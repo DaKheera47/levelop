@@ -28,9 +28,6 @@ export default function StyleCustomisation() {
 
     return (
         <div>
-            <h2 className="settings-style-customisation-title">
-                Style Customisation
-            </h2>
             {/* font customisation */}
             <h3 className="settings-style-customisation-subtitle">Font</h3>
             <HorizontalChooser

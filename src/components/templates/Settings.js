@@ -1,24 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import StyleCustomisation from "../molecules/Settings/StyleCustomisation";
-import SliderSelector from "../molecules/SliderSelector/SliderSelector";
+import Notifications from "../molecules/Settings/Notifications";
+import Integrations from "../molecules/Settings/Integrations";
 import "./settingsStyle.sass";
 
 export default function Settings() {
-    const [isChecked, setIsChecked] = useState(false);
-
     return (
         <motion.div
             className="settings-body"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
         >
+            <h2 className="settings-style-customisation-title">
+                Style Customisation
+            </h2>
             <StyleCustomisation />
-            <SliderSelector
-                text="Curated Content"
-                isChecked={isChecked}
-                setIsChecked={setIsChecked}
-            />
+
+            <h2 className="settings-style-customisation-title">
+                Notifications
+            </h2>
+            <Notifications />
+
+            <h2 className="settings-style-customisation-title">
+                Integrations
+            </h2>
+            <Integrations />
         </motion.div>
     );
 }
