@@ -19,7 +19,9 @@ export default function Integrations() {
             {customHr}
             <ButtonSelector text="Facebook" isActivated={true} />
             {customHr}
-            <ButtonSelector text="Google" isActivated={true} />
+            <ButtonSelector text="Google" isActivated={false} />
+            {customHr}
+            <ButtonSelector text="Twitter" isActivated={true} />
         </div>
     );
 }

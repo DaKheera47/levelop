@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import StyleCustomisation from "../molecules/Settings/StyleCustomisation";
 import Notifications from "../molecules/Settings/Notifications";
 import Integrations from "../molecules/Settings/Integrations";
+import SettingsProfile from "../molecules/Settings/SettingsProfile";
 import "./settingsStyle.sass";
 
 export default function Settings() {
@@ -22,10 +23,11 @@ export default function Settings() {
             </h2>
             <Notifications />
 
-            <h2 className="settings-style-customisation-title">
-                Integrations
-            </h2>
+            <h2 className="settings-style-customisation-title">Integrations</h2>
             <Integrations />
+
+            <h2 className="settings-style-customisation-title">Profile</h2>
+            <SettingsProfile />
         </motion.div>
     );
 }
