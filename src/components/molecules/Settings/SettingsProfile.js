@@ -7,10 +7,16 @@ export default function SettingsProfile() {
             <h1 className="settings-style-customisation-subtitle">
                 User Details
             </h1>
+            <CustomInputField label="Full Name" />
+            <CustomInputField label="Email" />
+            <CustomInputField label="Username" />
 
-            <CustomInputField inputId="Full Name" label="Full Name" />
-            <CustomInputField inputId="Email" label="Email" />
-            <CustomInputField inputId="Username" label="Username" />
+            <h1 className="settings-style-customisation-subtitle">
+                Basic Information
+            </h1>
+            <CustomInputField label="Full Name" />
+            <CustomInputField label="Location" />
+            <CustomInputField label="Website" />
         </div>
     );
 }

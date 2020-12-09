@@ -1,18 +1,8 @@
 import React, { useState } from "react";
 import SliderSelector from "../SliderSelector/SliderSelector";
+import CustomLine from "../../atoms/CustomLine";
 
 export default function Notifications() {
-    const customHr = (
-        <hr
-            style={{
-                color: "#E9E9E9",
-                backgroundColor: "#E9E9E9",
-                border: "none",
-                height: 1,
-            }}
-        />
-    );
-
     const [isChecked, setIsChecked] = useState(false);
 
     return (
@@ -22,19 +12,19 @@ export default function Notifications() {
                 isChecked={isChecked}
                 setIsChecked={setIsChecked}
             />
-            {customHr}
+            <CustomLine />
             <SliderSelector
                 text="Daily Digest"
                 isChecked={isChecked}
                 setIsChecked={setIsChecked}
             />
-            {customHr}
+            <CustomLine />
             <SliderSelector
                 text="Weekly Digest"
                 isChecked={isChecked}
                 setIsChecked={setIsChecked}
             />
-            {customHr}
+            <CustomLine />
         </div>
     );
 }
