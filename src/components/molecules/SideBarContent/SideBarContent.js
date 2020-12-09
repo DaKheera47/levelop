@@ -11,7 +11,7 @@ export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
         <>
             <div className="side-bar-item-container">
                 {navLinksPaths.map((e, i) => (
-                    <>
+                    <div key={e.to}>
                         {e.isHighlighted ? (
                             <NavLink
                                 className="side-bar-item highlighted"
@@ -51,7 +51,7 @@ export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
                                 {e.text}
                             </NavLink>
                         )}
-                    </>
+                    </div>
                 ))}
 
                 {isAuthenticated ? (

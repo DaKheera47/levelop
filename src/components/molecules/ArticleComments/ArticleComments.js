@@ -10,8 +10,8 @@ export default function ArticleComments({ comments }) {
         <div>
             <Title className="comments-title" text="Comments" />
 
-            {comments.map((e) => (
-                <Comment author={e.author} content={e.content} />
+            {comments.map((e, i) => (
+                <Comment key={i} author={e.author} content={e.content} />
             ))}
 
             <div className="comments-load-container">
