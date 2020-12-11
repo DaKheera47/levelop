@@ -10,13 +10,11 @@ import "./postStyle.sass";
 export default function Post({ title, imgSrc, imgAlt, author, postUrl }) {
     return (
         <div className="post-body">
-            <div className="post-title-img">
-                <Image className="post-img" src={imgSrc} alt={imgAlt} />
-                <Link className="post-title" to={postUrl}>
-                    {title}
-                    <Author className="post-author" name={author} />
-                </Link>
-            </div>
+            <Image className="post-img" src={imgSrc} alt={imgAlt} />
+            <Link className="post-title" to={postUrl}>
+                {title}
+                <Author className="post-author" name={author} />
+            </Link>
         </div>
     );
 }

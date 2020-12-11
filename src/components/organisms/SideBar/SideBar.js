@@ -17,7 +17,7 @@ export default function SideBar() {
 
     const navLinksPaths = [
         {
-            to: "/new-post",
+            to: "/new-article",
             text: "New Post",
             isHighlighted: true,
         },

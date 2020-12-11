@@ -7,31 +7,32 @@ import ArticleView from "./components/templates/ArticleView";
 import NavBar from "./components/organisms/Nav/Nav";
 
 import { SideBarProvider } from "./components/contexts/SideBarContext";
+import NewArticle from "./components/templates/NewArticle";
 
 export default function App() {
     return (
-        <>
-            <SideBarProvider>
+        <SideBarProvider>
+            <>
                 <NavBar />
-            </SideBarProvider>
 
-            <Switch>
-                <Route exact path="/article">
-                    <ArticleView />
-                </Route>
+                <Switch>
+                    <Route exact path="/article">
+                        <ArticleView />
+                    </Route>
 
-                <Route exact path="/settings">
-                    <SideBarProvider>
+                    <Route exact path="/settings">
                         <Settings />
-                    </SideBarProvider>
-                </Route>
+                    </Route>
 
-                <Route exact path="/">
-                    <SideBarProvider>
+                    <Route exact path="/new-article">
+                        <NewArticle />
+                    </Route>
+
+                    <Route exact path="/">
                         <Home />
-                    </SideBarProvider>
-                </Route>
-            </Switch>
-        </>
+                    </Route>
+                </Switch>
+            </>
+        </SideBarProvider>
     );
 }
