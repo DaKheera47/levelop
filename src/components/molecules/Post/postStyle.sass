@@ -1,3 +1,5 @@
+@import ../../../theme
+
 .post-body
     background-color: white
     width: 75%
@@ -32,10 +34,11 @@
 .post-author
     font-size: 10px
 
-@media screen and ( min-width: 992px )
+@media screen and ( min-width: $med-break )
     .post-body
-        width: 40vw
-        height: 150px
+        width: 50vw
+        min-height: 150px
+        max-height: 250px
 
     .post-title
         font-weight: bold
@@ -48,3 +51,15 @@
     .post-author
         font-size: 16px
         font-weight: normal
+
+    .navbar-new-post
+        filter: drop-shadow(0px 2px 24px rgba(0, 0, 0, 0.1))
+        border: none
+        background: white
+        width: 180px
+        height: 45px
+        font-size: 24px
+        font-weight: 500
+        color: $primary-orange
+        border-radius: 5px
+        font-family: $default-font
