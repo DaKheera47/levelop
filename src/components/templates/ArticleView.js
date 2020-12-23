@@ -37,7 +37,7 @@ export default function ArticleView() {
                     <ArticleHeader
                         author={article?.data?._id}
                         time="8"
-                        title={article?.data?.name}
+                        title={article?.data?.title}
                         profileUrl="https://miro.medium.com/fit/c/56/56/1*AwBz4NW9_M45J-sBlmH-lA.png"
                     />
 

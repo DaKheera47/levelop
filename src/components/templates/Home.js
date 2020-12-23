@@ -15,14 +15,13 @@ export default function Home() {
 
     useEffect(() => {
         getAllPosts();
-    }, [getAllPosts]);
+    }, []);
 
     return (
         <>
             {isLoading ? (
                 <p>Loading</p>
             ) : (
-                // <p>Loading or waiting for backend...</p>
                 <div className="home-page">
                     {isDesktopOrLaptop && (
                         <div className="home-left-panel">
@@ -65,7 +64,7 @@ export default function Home() {
                         {allPosts["data"]?.map((e) => (
                             <Post
                                 author={e._id}
-                                title={e.name}
+                                title={e.title}
                                 imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
                                 imgAlt="image"
                                 postUrl={`posts/${e._id}`}

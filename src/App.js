@@ -6,6 +6,7 @@ import ArticleView from "./components/templates/ArticleView";
 
 import NavBar from "./components/organisms/Nav/Nav";
 
+import { NewArticleContextProvider } from "./components/contexts/NewPostContext";
 import { SideBarProvider } from "./components/contexts/SideBarContext";
 import { PostsContextProvider } from "./components/contexts/AllPostsContext";
 import NewArticle from "./components/templates/NewArticle";
@@ -22,7 +23,11 @@ export default function App() {
                         <Settings />
                     </Route>
 
-                    <Route exact path="/new-article" component={NewArticle} />
+                    <Route exact path="/new-article">
+                        <NewArticleContextProvider>
+                            <NewArticle />
+                        </NewArticleContextProvider>
+                    </Route>
 
                     <PostsContextProvider>
                         <Route exact path="/posts/:id">
