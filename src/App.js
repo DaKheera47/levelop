@@ -7,7 +7,9 @@ import ArticleView from "./components/templates/ArticleView";
 import NavBar from "./components/organisms/Nav/Nav";
 
 import { SideBarProvider } from "./components/contexts/SideBarContext";
+import { PostsContextProvider } from "./components/contexts/AllPostsContext";
 import NewArticle from "./components/templates/NewArticle";
+import { ArticleContextProvider } from "./components/contexts/ArticleContext";
 
 export default function App() {
     return (
@@ -16,21 +18,23 @@ export default function App() {
                 <NavBar />
 
                 <Switch>
-                    <Route exact path="/article">
-                        <ArticleView />
-                    </Route>
-
                     <Route exact path="/settings">
                         <Settings />
                     </Route>
 
-                    <Route exact path="/new-article">
-                        <NewArticle />
-                    </Route>
+                    <Route exact path="/new-article" component={NewArticle} />
 
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
+                    <PostsContextProvider>
+                        <Route exact path="/posts/:id">
+                            <ArticleContextProvider>
+                                <ArticleView />
+                            </ArticleContextProvider>
+                        </Route>
+
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
+                    </PostsContextProvider>
                 </Switch>
             </>
         </SideBarProvider>
