@@ -15,7 +15,7 @@ export default function NavBar() {
     };
 
     const isDesktopOrLaptop = useMediaQuery({
-        query: "(min-device-width: 1224px)",
+        query: "(min-device-width: 768px)",
     });
 
     return (
