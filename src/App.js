@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./components/templates/Home";
 import Settings from "./components/templates/Settings";
 import ArticleView from "./components/templates/ArticleView";
+import Login from "./components/templates/Login";
 
 import NavBar from "./components/organisms/Nav/Nav";
 
@@ -27,6 +28,10 @@ export default function App() {
                         <NewArticleContextProvider>
                             <NewArticle />
                         </NewArticleContextProvider>
+                    </Route>
+
+                    <Route exact path="/login">
+                        <Login />
                     </Route>
 
                     <PostsContextProvider>
