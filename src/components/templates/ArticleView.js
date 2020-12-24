@@ -29,7 +29,8 @@ export default function ArticleView() {
             _id: "5fe1eb6bee7e084cac93edf5",
             title:
                 "How to learn node.js with MongoDB in just 15 Days with Shaheer Sarfaraz",
-            content: "This is rocket league",
+            content:
+                "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ",
         },
     };
 
