@@ -1,10 +1,10 @@
-import axios from "axios";
 import React, { useState, useContext } from "react";
 import { NewPostsContext } from "../contexts/NewPostContext";
 import "./NewArticle.sass";
-import querystring from "querystring";
+import { useHistory } from "react-router-dom";
 
 export default function NewArticle() {
+    const history = useHistory();
     const [articleTitle, setArticleTitle] = useState("");
     const [articleContent, setArticleContent] = useState("");
 
@@ -14,26 +14,23 @@ export default function NewArticle() {
         changer(evt.target.value);
     };
 
+    const handleCancel = () => {
+        setArticleContent("");
+        setArticleTitle("");
+
+        history.push("/");
+    };
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        console.log(articleTitle);
-
-        console.log({
-            title: articleTitle,
-            content: articleContent,
+        makeNewPost(articleTitle, articleContent).then((res) => {
+            setArticleContent("");
+            setArticleTitle("");
         });
-
-        axios.post(
-            "http://ammar-228df1a1.localhost.run/posts",
-            querystring.stringify({
-                title: articleTitle,
-                content: articleContent,
-            })
-        );
     };
 
     return (
-        <div>
+        <>
             <form onSubmit={handleSubmit}>
                 <div className="new-article-text-area">
                     <input
@@ -50,7 +47,7 @@ export default function NewArticle() {
 
                     <hr className="new-article-custom-separator" />
 
-                    <input
+                    <textarea
                         type="text"
                         name="content"
                         className="new-article-content-input"
@@ -61,9 +58,14 @@ export default function NewArticle() {
                             handleChange(evt, setArticleContent);
                         }}
                     />
+                    <button type="submit" className="confirmation-btn">
+                        Post
+                    </button>
+                    <button onClick={handleCancel} className="negative-btn">
+                        Cancel
+                    </button>
                 </div>
-                <button type="submit">Submit</button>
             </form>
-        </div>
+        </>
     );
 }

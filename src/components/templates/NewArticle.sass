@@ -14,17 +14,24 @@
     background-color: $cream
     font-size: 18px
     font-family: $default-font
-    color: rgba(0, 0, 0, 0.5)
+    color: black
+
+    &::placeholder
+        color: rgba(0, 0, 0, 0.5)
 
 .new-article-content-input
     width: 100%
     border: none
     background-color: $cream
     font-size: 16px
+    height: 89%
 
     font-family: $default-font
     font-weight: normal
-    color: rgba(0, 0, 0, 0.5)
+    color: black
+
+    &::placeholder
+        color: rgba(0, 0, 0, 0.5)
 
 .new-article-custom-separator
     width: 100%
@@ -34,3 +41,26 @@
     border: none
     margin-top: 10px
     margin-bottom: 20px
+
+.confirmation-btn
+    font-family: $default-font
+
+    text-decoration: none
+    border: none
+    color: white
+    display: inline
+    margin: 20px 10px 0 0
+
+    background: $primary-orange
+    border-radius: 4px
+    font-weight: 500
+    height: 30px
+    font-size: 14px
+    padding-left: 15px
+    padding-right: 15px
+
+.negative-btn
+    @extend .confirmation-btn
+    background-color: $primary-cream
+    color: $grey
+    border: 1px solid $grey
