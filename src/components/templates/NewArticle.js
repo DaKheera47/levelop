@@ -8,7 +8,7 @@ export default function NewArticle() {
     const [articleTitle, setArticleTitle] = useState("");
     const [articleContent, setArticleContent] = useState("");
 
-    const { makeNewPost, isLoading } = useContext(NewPostsContext);
+    const { makeNewPost } = useContext(NewPostsContext);
 
     const handleChange = (evt, changer) => {
         changer(evt.target.value);

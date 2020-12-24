@@ -22,15 +22,44 @@ export default function ArticleView() {
     ];
 
     let { id } = useParams();
-    const { getArticle, article, isLoading } = useContext(ArticleContext);
+    // const { getArticle, article, isLoading } = useContext(ArticleContext);
+    const { getArticle, isLoading } = useContext(ArticleContext);
+    let article = {
+        data: {
+            _id: "5fe1eb6bee7e084cac93edf5",
+            title:
+                "How to learn node.js with MongoDB in just 15 Days with Shaheer Sarfaraz",
+            content: "This is rocket league",
+        },
+    };
+
+    const socialBtns = (
+        <div className="article-view-social-btns">
+            <AiOutlineLike
+                style={{ margin: "0 5px" }}
+                color="#fa6400"
+                size={30}
+            />
+            <AiOutlineShareAlt
+                style={{ margin: "0 5px" }}
+                color="#fa6400"
+                size={30}
+            />
+            <VscBookmark
+                style={{ margin: "0 5px" }}
+                color="#fa6400"
+                size={30}
+            />
+        </div>
+    );
 
     useEffect(() => {
-        getArticle(id);
+        // getArticle(id);
     }, [getArticle, id]);
 
     return (
         <div className="article-page">
-            {isLoading ? (
+            {!isLoading ? (
                 <p>Loading</p>
             ) : (
                 <>
@@ -45,23 +74,7 @@ export default function ArticleView() {
                         {article?.data?.content}
                     </div>
 
-                    <div>
-                        <AiOutlineLike
-                            style={{ margin: "0 5px" }}
-                            color="#fa6400"
-                            size={30}
-                        />
-                        <AiOutlineShareAlt
-                            style={{ margin: "0 5px" }}
-                            color="#fa6400"
-                            size={30}
-                        />
-                        <VscBookmark
-                            style={{ margin: "0 5px" }}
-                            color="#fa6400"
-                            size={30}
-                        />
-                    </div>
+                    {socialBtns}
 
                     <ArticleComments comments={comments} />
                 </>

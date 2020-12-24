@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import CallToAction from "../../atoms/CallToAction";
 import { FaRegPlusSquare } from "react-icons/fa";
 import { SideBarContext } from "../../contexts/SideBarContext";
 
