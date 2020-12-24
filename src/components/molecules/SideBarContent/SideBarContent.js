@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import CallToAction from "../../atoms/CallToAction";
 import { FaRegPlusSquare } from "react-icons/fa";
 import { SideBarContext } from "../../contexts/SideBarContext";
@@ -63,12 +63,24 @@ export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
                     </div>
                 ) : (
                     <div className="side-bar-CTA-container">
-                        <CallToAction className="side-bar-CTA" text="Sign Up" />
+                        <Link
+                            className="side-bar-CTA"
+                            onClick={() => {
+                                closeSideBar();
+                            }}
+                        >
+                            Sign Up
+                        </Link>
 
-                        <CallToAction
+                        <Link
+                            to="/login"
                             className="side-bar-secondary-CTA"
-                            text="Log In"
-                        />
+                            onClick={() => {
+                                closeSideBar();
+                            }}
+                        >
+                            Log In
+                        </Link>
                     </div>
                 )}
             </div>
