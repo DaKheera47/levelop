@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/levelop/static/css/main.37dbc917.chunk.css",
-    "main.js": "/levelop/static/js/main.0d671e36.chunk.js",
-    "main.js.map": "/levelop/static/js/main.0d671e36.chunk.js.map",
+    "main.js": "/levelop/static/js/main.10b75281.chunk.js",
+    "main.js.map": "/levelop/static/js/main.10b75281.chunk.js.map",
     "runtime-main.js": "/levelop/static/js/runtime-main.b536ab88.js",
     "runtime-main.js.map": "/levelop/static/js/runtime-main.b536ab88.js.map",
-    "static/js/2.35e853c7.chunk.js": "/levelop/static/js/2.35e853c7.chunk.js",
-    "static/js/2.35e853c7.chunk.js.map": "/levelop/static/js/2.35e853c7.chunk.js.map",
+    "static/js/2.caba86da.chunk.js": "/levelop/static/js/2.caba86da.chunk.js",
+    "static/js/2.caba86da.chunk.js.map": "/levelop/static/js/2.caba86da.chunk.js.map",
     "index.html": "/levelop/index.html",
     "static/css/main.37dbc917.chunk.css.map": "/levelop/static/css/main.37dbc917.chunk.css.map",
-    "static/js/2.35e853c7.chunk.js.LICENSE.txt": "/levelop/static/js/2.35e853c7.chunk.js.LICENSE.txt"
+    "static/js/2.caba86da.chunk.js.LICENSE.txt": "/levelop/static/js/2.caba86da.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b536ab88.js",
-    "static/js/2.35e853c7.chunk.js",
+    "static/js/2.caba86da.chunk.js",
     "static/css/main.37dbc917.chunk.css",
-    "static/js/main.0d671e36.chunk.js"
+    "static/js/main.10b75281.chunk.js"
   ]
 }
