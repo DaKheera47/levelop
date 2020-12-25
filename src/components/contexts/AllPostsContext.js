@@ -7,7 +7,7 @@ const PostsContextProvider = (props) => {
     const [allPosts, setAllPosts] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
-    const preURL = "http://ammar-228df1a1.localhost.run";
+    const preURL = "https://stormy-sands-86791.herokuapp.com";
 
     const getAllPosts = async () => {
         const res = await axios.get(`${preURL}/posts`).catch((e) => {

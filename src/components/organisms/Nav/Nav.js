@@ -1,6 +1,6 @@
 import { BiSearchAlt2 } from "react-icons/bi";
 import { FaRegPlusSquare } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import LogoSvg from "../../atoms/logo";
 import SideBar from "../SideBar/SideBar";
@@ -26,7 +26,7 @@ export default function NavBar() {
             <div className="navbar-logo" onClick={handleLogoClick}>
                 {isDesktopOrLaptop ? <LogoSvg isLarge={true} /> : <LogoSvg />}
             </div>
-            <button className="navbar-new-post">
+            <Link to="/new-article" className="navbar-new-post">
                 <FaRegPlusSquare
                     key="posticon"
                     // somehow only inline styles work here because they are applied to the element instead of to a class
@@ -34,11 +34,10 @@ export default function NavBar() {
                         marginRight: "10px",
                         height: "25px",
                         verticalAlign: "text-top",
-                        marginTop: "4px",
                     }}
                 />
                 New Post
-            </button>
+            </Link>
             <BiSearchAlt2 size={23} className="navbar-search" color="white" />
         </nav>
     );

@@ -6,7 +6,7 @@ export const NewPostsContext = createContext();
 
 const NewArticleContextProvider = (props) => {
     const [isLoading, setIsLoading] = useState(true);
-    const preURL = "http://ammar-228df1a1.localhost.run";
+    const preURL = "https://stormy-sands-86791.herokuapp.com";
 
     const makeNewPost = async ({ articleTitle, articleContent }) => {
         const res = await axios
