@@ -1,5 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
+import { ApiContext } from "./ApiContext";
 
 export const ArticleContext = createContext();
 
@@ -7,10 +8,10 @@ const ArticleContextProvider = (props) => {
     const [article, setArticle] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
-    const preURL = "https://stormy-sands-86791.herokuapp.com";
+    const { preUrl } = useContext(ApiContext);
 
     const getArticle = async (id) => {
-        const res = await axios.get(`${preURL}/posts/${id}`).catch(e => {
+        const res = await axios.get(`${preUrl}/posts/${id}`).catch((e) => {
             console.log(e);
         });
         if (res) {

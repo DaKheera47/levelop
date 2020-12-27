@@ -1,5 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
+import { ApiContext } from "./ApiContext";
 
 export const PostsContext = createContext();
 
@@ -7,18 +8,19 @@ const PostsContextProvider = (props) => {
     const [allPosts, setAllPosts] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
-    const preURL = "https://stormy-sands-86791.herokuapp.com";
+    const { preUrl } = useContext(ApiContext);
 
     const getAllPosts = async () => {
-        const res = await axios.get(`${preURL}/posts`).catch((e) => {
-            console.log(e);
-        });
-        if (res) {
-            setIsLoading(false);
-            setAllPosts(res);
-        } else {
-            console.log("bive");
-        }
+        axios
+            .get(`${preUrl}/posts`)
+            .then((res) => {
+                setIsLoading(false);
+                console.log(res)
+                setAllPosts(res);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
     };
 
     return (

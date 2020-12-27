@@ -1,22 +1,29 @@
-import React, { createContext, useState } from "react";
-import querystring from "querystring";
+import React, { createContext, useState, useContext } from "react";
 import axios from "axios";
+import { ApiContext } from "../contexts/ApiContext";
 
 export const NewPostsContext = createContext();
 
 const NewArticleContextProvider = (props) => {
     const [isLoading, setIsLoading] = useState(true);
-    const preURL = "https://stormy-sands-86791.herokuapp.com";
+    const { preUrl, cookies } = useContext(ApiContext);
 
-    const makeNewPost = async ({ articleTitle, articleContent }) => {
+    const makeNewPost = async (articleTitle, articleContent) => {
+        const config = {
+            headers: {
+                Authorization: cookies.get("jwt"),
+            },
+        };
+
+        const data = {
+            title: articleTitle,
+            content: articleContent,
+        };
+
+        console.log(data);
+
         const res = await axios
-            .post(
-                `${preURL}/posts`,
-                querystring.stringify({
-                    title: articleTitle,
-                    content: articleContent,
-                })
-            )
+            .post(`${preUrl}/posts`, data, config)
             .then((res) => {
                 console.log(res);
             })

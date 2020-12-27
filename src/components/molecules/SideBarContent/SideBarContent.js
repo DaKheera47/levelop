@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaRegPlusSquare } from "react-icons/fa";
 import { SideBarContext } from "../../contexts/SideBarContext";
+import { ApiContext } from "../../contexts/ApiContext";
 
 export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
     const { closeSideBar } = useContext(SideBarContext);
+    const { Logout } = useContext(ApiContext);
 
     return (
         <>
@@ -56,13 +58,21 @@ export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
                 {isAuthenticated ? (
                     <div className="side-bar-CTA-container">
                         <hr color="#fa6400" size="1" />
-                        <a href="/" className="side-bar-logout">
+                        <p
+                            to="/"
+                            className="side-bar-logout"
+                            onClick={() => {
+                                closeSideBar();
+                                Logout();
+                            }}
+                        >
                             Logout
-                        </a>
+                        </p>
                     </div>
                 ) : (
                     <div className="side-bar-CTA-container">
                         <Link
+                            to="/signup"
                             className="side-bar-CTA"
                             onClick={() => {
                                 closeSideBar();

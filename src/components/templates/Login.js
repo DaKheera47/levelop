@@ -1,42 +1,21 @@
-import axios from "axios";
-import React, { useState } from "react";
-import querystring from "querystring";
-import Cookies from "universal-cookie";
+import React, { useContext, useState } from "react";
 import "./Login.sass";
+import { Link } from "react-router-dom";
+import { ApiContext } from "../contexts/ApiContext";
 
 export default function Login() {
-    const cookies = new Cookies();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const { Login } = useContext(ApiContext);
 
     const handleChange = (evt, changer) => {
         changer(evt.target.value);
     };
 
-    const instance = axios.create({
-        withCredentials: true,
-    });
-
     const handleLogin = (evt) => {
         evt.preventDefault();
-
-        instance
-            .post(
-                "https://stormy-sands-86791.herokuapp.com/login",
-                querystring.stringify({ email: email, password: password })
-            )
-            .then(function (response) {
-                //handle success
-                console.log(response);
-
-                // cookies.set("jwt", res.)
-
-                console.log(cookies.get("jwt"));
-            })
-            .catch(function (response) {
-                //handle error
-                console.log(response);
-            });
+        Login(email, password);
     };
 
     return (
@@ -74,7 +53,8 @@ export default function Login() {
                     />
                 </div>
                 <p className="login-subinfo">
-                    Don't have an account? <a>Sign Up Instead</a>
+                    Don't have an account?{" "}
+                    <Link to="/signup">Sign Up Instead</Link>
                 </p>
                 <button type="submit" className="confirmation-btn login-btn">
                     Login

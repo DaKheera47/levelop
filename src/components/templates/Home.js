@@ -15,7 +15,7 @@ export default function Home() {
 
     useEffect(() => {
         getAllPosts();
-    }, [getAllPosts]);
+    }, []);
 
     return (
         <>
@@ -62,7 +62,7 @@ export default function Home() {
                     <div className="posts">
                         {allPosts["data"]?.map((e) => (
                             <Post
-                                author={e._id}
+                                author={e?.author?.username}
                                 title={e.title}
                                 imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
                                 imgAlt="image"

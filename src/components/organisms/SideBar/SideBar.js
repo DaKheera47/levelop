@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { CgClose } from "react-icons/cg";
 import SideBarContent from "../../molecules/SideBarContent/SideBarContent";
 import SideBarProfile from "../../molecules/SideBarProfile/SideBarProfile";
+import Cookies from "universal-cookie";
 
 import "./SideBar.sass";
 
@@ -13,7 +14,9 @@ export default function SideBar() {
         SideBarContext
     );
 
-    const isAuthenticated = false;
+    const cookies = new Cookies();
+
+    const isAuthenticated = !!cookies.get("jwt");
 
     const navLinksPaths = [
         {

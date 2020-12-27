@@ -60,12 +60,12 @@ export default function ArticleView() {
 
     return (
         <div className="article-page">
-            {!isLoading ? (
+            {isLoading ? (
                 <p>Loading</p>
             ) : (
                 <>
                     <ArticleHeader
-                        author={article?.data?._id}
+                        author={article?.data?.author?.username}
                         time="8"
                         title={article?.data?.title}
                         profileUrl="https://miro.medium.com/fit/c/56/56/1*AwBz4NW9_M45J-sBlmH-lA.png"
