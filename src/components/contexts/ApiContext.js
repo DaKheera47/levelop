@@ -13,6 +13,7 @@ const ApiContextProvider = (props) => {
     axios.defaults.withCredentials = true;
 
     const Login = (email, password) => {
+        console.log(email, password);
         axios
             .post(
                 `${preUrl}/login`,
@@ -39,7 +40,6 @@ const ApiContextProvider = (props) => {
     };
 
     const SignUp = (email, password, username) => {
-        // TODO: sign up
         axios
             .post(`${preUrl}/register`, {
                 email: email,
