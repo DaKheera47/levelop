@@ -10,7 +10,7 @@ export default function SideBarProfile({
     profileNibbles,
 }) {
     return (
-        <div className="home-profile-profile-container">
+        <>
             <img
                 src={imageSrc}
                 alt="Profile"
@@ -26,6 +26,6 @@ export default function SideBarProfile({
                     </span>
                 </p>
             </div>
-        </div>
+        </>
     );
 }
