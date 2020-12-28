@@ -16,28 +16,24 @@ export default function SideBar() {
 
     const cookies = new Cookies();
 
-    const isAuthenticated = !!cookies.get("jwt");
+    const isAuthenticated = false;
+    // const isAuthenticated = !!cookies.get("jwt");
 
     const navLinksPaths = [
         {
-            to: "/new-article",
-            text: "New Post",
-            isHighlighted: true,
-        },
-        {
-            to: "/",
+            to: "/posts",
             text: "Feed",
-            isHighlighted: false,
+            requiresAuth: true,
         },
         {
             to: "/settings",
             text: "Settings",
-            isHighlighted: false,
+            requiresAuth: true,
         },
         {
             to: "/saved",
             text: "Saved",
-            isHighlighted: false,
+            requiresAuth: true,
         },
     ];
 
@@ -72,12 +68,19 @@ export default function SideBar() {
                             }}
                             exit={{ translateX: -500 }}
                         >
-                            {isAuthenticated && (
+                            {isAuthenticated ? (
                                 <SideBarProfile
                                     imageSrc="https://images.iphonephotographyschool.com/24755/portrait-photography.jpg"
                                     profileName="Ammar Kashif"
                                     profileHandle="@ammar"
                                     profileNibbles="5.7K"
+                                />
+                            ) : (
+                                <SideBarProfile
+                                    imageSrc="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                                    profileName="Hello Guest User!"
+                                    profileHandle="@guest"
+                                    profileNibbles="0"
                                 />
                             )}
 

@@ -10,53 +10,50 @@ export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
 
     return (
         <>
-            <div className="side-bar-item-container">
-                {navLinksPaths.map((e, i) => (
-                    <div key={e.to}>
-                        {e.isHighlighted ? (
-                            <NavLink
-                                className="side-bar-item highlighted"
-                                exact
-                                key={i}
-                                to={e.to}
-                                activeClassName="active"
-                                onClick={() => {
-                                    closeSideBar();
-                                }}
-                            >
-                                {e.isHighlighted && (
-                                    <FaRegPlusSquare
-                                        key="posticon"
-                                        // somehow only inline styles work here because they are applied to the element instead of to a class
-                                        style={{
-                                            marginRight: "10px",
-                                            height: "25px",
-                                            verticalAlign: "text-top",
-                                            marginTop: "4px",
-                                        }}
-                                    />
-                                )}
-                                {e.text}
-                            </NavLink>
-                        ) : (
-                            <NavLink
-                                className="side-bar-item"
-                                exact
-                                key={i}
-                                to={e.to}
-                                activeClassName="active"
-                                onClick={() => {
-                                    closeSideBar();
-                                }}
-                            >
-                                {e.text}
-                            </NavLink>
-                        )}
-                    </div>
-                ))}
+            {isAuthenticated && (
+                <NavLink
+                    to="/new-article"
+                    onClick={() => {
+                        closeSideBar();
+                    }}
+                    className="side-bar-item highlighted"
+                >
+                    <FaRegPlusSquare
+                        key="posticon"
+                        // somehow only inline styles work here because they are applied to the element instead of to a class
+                        style={{
+                            marginRight: "10px",
+                            height: "25px",
+                            verticalAlign: "text-top",
+                            marginTop: "4px",
+                        }}
+                    />
+                    New Post
+                </NavLink>
+            )}
 
+            {navLinksPaths.map((e, i) => (
+                <>
+                    {e.requiresAuth && isAuthenticated && (
+                        <NavLink
+                            className="side-bar-item"
+                            exact
+                            key={i}
+                            to={e.to}
+                            activeClassName="active"
+                            onClick={() => {
+                                closeSideBar();
+                            }}
+                        >
+                            {e.text}
+                        </NavLink>
+                    )}
+                </>
+            ))}
+
+            <div className="side-bar-CTA-container">
                 {isAuthenticated ? (
-                    <div className="side-bar-CTA-container">
+                    <>
                         <hr color="#fa6400" size="1" />
                         <p
                             to="/"
@@ -68,9 +65,9 @@ export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
                         >
                             Logout
                         </p>
-                    </div>
+                    </>
                 ) : (
-                    <div className="side-bar-CTA-container">
+                    <>
                         <Link
                             to="/signup"
                             className="side-bar-CTA"
@@ -90,7 +87,7 @@ export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
                         >
                             Log In
                         </Link>
-                    </div>
+                    </>
                 )}
             </div>
         </>
