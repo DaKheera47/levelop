@@ -6,6 +6,7 @@ import { ApiContext } from "../contexts/ApiContext";
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
 
     const { SignUp } = useContext(ApiContext);
 
@@ -15,7 +16,7 @@ export default function Login() {
 
     const handleSignUp = (evt) => {
         evt.preventDefault();
-        SignUp(email, password);
+        SignUp(email, password, username);
     };
 
     return (
@@ -28,6 +29,18 @@ export default function Login() {
             </div>
 
             <form className="login-form" onSubmit={handleSignUp}>
+                <div className="login-input-field-container">
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        name="Username"
+                        id="Username"
+                        className="login-input-field"
+                        onChange={(evt) => {
+                            handleChange(evt, setUsername);
+                        }}
+                    />
+                </div>
                 <div className="login-input-field-container">
                     <input
                         type="email"

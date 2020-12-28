@@ -7,7 +7,7 @@ export const ApiContext = createContext();
 
 const ApiContextProvider = (props) => {
     const cookies = new Cookies();
-    const preUrl = "http://ammar-5ca65705.localhost.run";
+    const preUrl = "http://ammar-2fe2a823.localhost.run";
     const history = useHistory();
 
     axios.defaults.withCredentials = true;
@@ -38,31 +38,24 @@ const ApiContextProvider = (props) => {
             });
     };
 
-    const SignUp = (email, password) => {
+    const SignUp = (email, password, username) => {
         // TODO: sign up
-        // axios
-        //     .post(
-        //         `${preUrl}/login`,
-        //         {
-        //             email: email,
-        //             password: password,
-        //         },
-        //         {
-        //             headers: {
-        //                 Authorization: `${cookies.get("jwt")}`,
-        //             },
-        //         }
-        //     )
-        //     .then(function (res) {
-        //         //handle success
-        //         cookies.set("jwt", res?.data?.token);
-        //         console.log(res);
-        //         history.push("/");
-        //     })
-        //     .catch(function (res) {
-        //         //handle error
-        //         console.log(res);
-        //     });
+        axios
+            .post(`${preUrl}/register`, {
+                email: email,
+                password: password,
+                username: username,
+            })
+            .then(function (res) {
+                //handle success
+                cookies.set("jwt", res?.data?.token);
+                console.log(res);
+                history.push("/");
+            })
+            .catch(function (res) {
+                //handle error
+                console.log(res);
+            });
     };
 
     const Logout = () => {
