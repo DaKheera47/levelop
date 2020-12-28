@@ -1,17 +1,20 @@
 .home-left-panel-links-container
-    position: absolute
-    left: 3vw
-    top: 35vh
-    width: 15vw
     display: flex
     flex-wrap: wrap
     justify-content: center
     align-items: center
+    margin-top: 20px
 
-.home-loader
+.home-page
+    padding: 0 5vw
+
+.home-left-panel
     display: flex
     justify-content: center
+    align-items: center
     flex-wrap: wrap
+    height: 20vh
+    margin-top: 50px
 
 .home-panel-link
     display: block
@@ -24,3 +27,12 @@
 .home-panel-link-active
     @extend .home-panel-link
     color: black
+
+@media screen and ( min-width: 768px )
+    .home-page
+        width: 100%
+        padding: 0
+        display: grid
+        grid-template-columns: 0.7fr 1.6fr 0.7fr
+        grid-template-rows: 1fr
+        gap: 0px 0px
