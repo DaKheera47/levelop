@@ -10,14 +10,25 @@ const ArticleContextProvider = (props) => {
 
     const { preUrl } = useContext(ApiContext);
 
+    // used to cancel axios request on component unmount
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
     const getArticle = async (id) => {
-        const res = await axios.get(`${preUrl}/posts/${id}`).catch((e) => {
-            console.log(e);
-        });
+        const res = await axios
+            .get(`${preUrl}/posts/${id}`, {
+                cancelToken: source.token,
+            })
+            .catch((e) => {
+                console.log(e);
+            });
         if (res) {
             setIsLoading(false);
             setArticle(res);
         }
+        return () => {
+            source.cancel();
+        };
     };
 
     return (
