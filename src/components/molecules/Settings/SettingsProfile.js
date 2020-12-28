@@ -14,7 +14,7 @@ export default function SettingsProfile() {
             <h1 className="settings-style-customisation-subtitle">
                 Basic Information
             </h1>
-            <CustomInputField label="Full Name" />
+            <CustomInputField label="Name" />
             <CustomInputField label="Location" />
             <CustomInputField label="Website" />
         </div>
