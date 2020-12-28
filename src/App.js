@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 // pages
 import Home from "./components/templates/Home";
@@ -52,8 +52,12 @@ export default function App() {
                                 </ArticleContextProvider>
                             </Route>
 
-                            <Route exact path="/">
+                            <Route exact path="/posts">
                                 <Home />
+                            </Route>
+
+                            <Route exact path="/">
+                                <Redirect to="/posts" />
                             </Route>
                         </PostsContextProvider>
                     </Switch>
