@@ -26,6 +26,8 @@ const ArticleContextProvider = (props) => {
                 setArticle({
                     data: {
                         author: { username: "DaKheera47" },
+                        title:
+                            "How to learn node.js with MongoDB in just 15 days!",
                         content: "This is the content of the offline article",
                     },
                 });
