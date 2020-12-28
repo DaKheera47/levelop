@@ -15,11 +15,21 @@ const PostsContextProvider = (props) => {
             .get(`${preUrl}/posts`)
             .then((res) => {
                 setIsLoading(false);
-                console.log(res)
+                console.log(res);
                 setAllPosts(res);
             })
             .catch((e) => {
+                setIsLoading(false);
                 console.log(e);
+                setAllPosts({
+                    data: [
+                        {
+                            _id: "offlinePost1",
+                            author: { username: "DaKheera47" },
+                            title: "This is an offline post",
+                        },
+                    ],
+                });
             });
     };
 

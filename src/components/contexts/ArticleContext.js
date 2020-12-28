@@ -19,11 +19,19 @@ const ArticleContextProvider = (props) => {
             .get(`${preUrl}/posts/${id}`, {
                 cancelToken: source.token,
             })
+
             .catch((e) => {
                 console.log(e);
+                setIsLoading(false);
+                setArticle({
+                    data: {
+                        author: { username: "DaKheera47" },
+                        content: "This is the content of the offline article",
+                    },
+                });
             });
+
         if (res) {
-            setIsLoading(false);
             setArticle(res);
         }
         return () => {
