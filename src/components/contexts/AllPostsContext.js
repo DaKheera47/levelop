@@ -19,17 +19,17 @@ const PostsContextProvider = (props) => {
                 setAllPosts(res);
             })
             .catch((e) => {
-                setIsLoading(false);
                 console.log(e);
-                setAllPosts({
-                    data: [
-                        {
-                            _id: "offlinePost1",
-                            author: { username: "DaKheera47" },
-                            title: "This is an offline post",
-                        },
-                    ],
-                });
+                // setIsLoading(false);
+                // setAllPosts({
+                //     data: [
+                //         {
+                //             _id: "offlinePost1",
+                //             author: { username: "DaKheera47" },
+                //             title: "This is an offline post",
+                //         },
+                //     ],
+                // });
             });
     };
 

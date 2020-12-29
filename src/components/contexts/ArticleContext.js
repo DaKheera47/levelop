@@ -21,15 +21,15 @@ const ArticleContextProvider = (props) => {
             })
             .catch((e) => {
                 console.log(e);
-                setIsLoading(false);
-                setArticle({
-                    data: {
-                        author: { username: "DaKheera47" },
-                        title:
-                            "[Offline] How to learn node.js with MongoDB in just 15 days!",
-                        content: "This is the content of the offline article",
-                    },
-                });
+                // setIsLoading(false);
+                // setArticle({
+                //     data: {
+                //         author: { username: "DaKheera47" },
+                //         title:
+                //             "[Offline] How to learn node.js with MongoDB in just 15 days!",
+                //         content: "This is the content of the offline article",
+                //     },
+                // });
             });
 
         if (res) {
