@@ -59,11 +59,19 @@ export default function Login() {
                     Login
                 </button>
 
-                <h3 style={{ textAlign: "center" }}>OR</h3>
+                <h3
+                    style={{
+                        textAlign: "center",
+                        fontWeight: 300,
+                        color: "#505050",
+                    }}
+                >
+                    OR
+                </h3>
 
                 <button className="google-btn">
                     <svg
-                        className="google-logo"
+                        className="logo"
                         width="18"
                         height="20"
                         viewBox="0 0 18 20"
@@ -102,7 +110,22 @@ export default function Login() {
                     Continue with Google
                 </button>
 
-                <button className="fb-btn">Continue with Facebook</button>
+                <button className="fb-btn">
+                    <svg
+                        className="logo"
+                        width="21"
+                        height="21"
+                        viewBox="0 0 21 21"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M19.8396 0H1.15902C0.519347 0 0 0.518318 0 1.15904V19.8399C0 20.4806 0.519347 20.9997 1.15902 20.9997H11.2161V12.8674H8.47966V9.69763H11.2161V7.36018C11.2161 4.64826 12.872 3.17076 15.2917 3.17076C16.4517 3.17076 17.4465 3.25755 17.7366 3.29524V6.12991L16.0583 6.13061C14.7426 6.13061 14.4888 6.75611 14.4888 7.67346V9.69659H17.6277L17.2173 12.866H14.4885V20.9986H19.8392C20.4796 20.9986 20.9993 20.4789 20.9993 19.8399V1.15835C20.999 0.518318 20.48 0 19.8396 0Z"
+                            fill="white"
+                        />
+                    </svg>
+                    Continue with Facebook
+                </button>
             </form>
         </div>
     );

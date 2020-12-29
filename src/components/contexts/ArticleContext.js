@@ -19,7 +19,6 @@ const ArticleContextProvider = (props) => {
             .get(`${preUrl}/posts/${id}`, {
                 cancelToken: source.token,
             })
-
             .catch((e) => {
                 console.log(e);
                 setIsLoading(false);
@@ -27,13 +26,14 @@ const ArticleContextProvider = (props) => {
                     data: {
                         author: { username: "DaKheera47" },
                         title:
-                            "How to learn node.js with MongoDB in just 15 days!",
+                            "[Offline] How to learn node.js with MongoDB in just 15 days!",
                         content: "This is the content of the offline article",
                     },
                 });
             });
 
         if (res) {
+            setIsLoading(false);
             setArticle(res);
         }
         return () => {

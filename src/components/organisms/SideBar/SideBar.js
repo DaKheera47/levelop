@@ -16,8 +16,8 @@ export default function SideBar() {
 
     const cookies = new Cookies();
 
-    const isAuthenticated = false;
-    // const isAuthenticated = !!cookies.get("jwt");
+    // const isAuthenticated = false;
+    const isAuthenticated = !!cookies.get("jwt");
 
     const navLinksPaths = [
         {
