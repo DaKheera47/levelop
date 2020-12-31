@@ -7,10 +7,6 @@ export default function CustomInputField({
     onChange,
     placeholder,
 }) {
-    if (!type) {
-        let type = "text";
-    }
-
     return (
         <div className="custom-input-container">
             <label className="custom-input-label" htmlFor={label}>
@@ -19,7 +15,7 @@ export default function CustomInputField({
             <input
                 className="custom-input-field"
                 placeholder={placeholder}
-                type={type}
+                type={type || "text"}
                 onChange={onChange}
                 id={label}
             />
