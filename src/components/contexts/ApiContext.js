@@ -7,7 +7,7 @@ export const ApiContext = createContext();
 
 const ApiContextProvider = (props) => {
     const cookies = new Cookies();
-    const preUrl = "http://ammar-03d2c2f1.localhost.run";
+    const preUrl = "http://ammar-62c6689f.localhost.run";
     const history = useHistory();
 
     axios.defaults.withCredentials = true;
@@ -39,12 +39,13 @@ const ApiContextProvider = (props) => {
             });
     };
 
-    const SignUp = (email, password, username) => {
+    const SignUp = (email, password, username, fullName) => {
         axios
             .post(`${preUrl}/register`, {
                 email: email,
                 password: password,
                 username: username,
+                fullname: fullName,
             })
             .then(function (res) {
                 //handle success
