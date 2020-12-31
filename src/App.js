@@ -56,9 +56,9 @@ export default function App() {
                                 <Home />
                             </Route>
 
-                            <Route path="*">
+                            {/* <Route path="*">
                                 <Redirect to="/" />
-                            </Route>
+                            </Route> */}
                         </PostsContextProvider>
                     </Switch>
                 </>
