@@ -5,7 +5,7 @@ import { ApiContext } from "./ApiContext";
 export const ArticleContext = createContext();
 
 const ArticleContextProvider = (props) => {
-    const [article, setArticle] = useState({});
+    const [article, setArticle] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const { preUrl } = useContext(ApiContext);
@@ -18,6 +18,10 @@ const ArticleContextProvider = (props) => {
         const res = await axios
             .get(`${preUrl}/posts/${id}`, {
                 cancelToken: source.token,
+            })
+            .then((res) => {
+                setIsLoading(false);
+                setArticle(res);
             })
             .catch((e) => {
                 console.log(e);
@@ -33,12 +37,8 @@ const ArticleContextProvider = (props) => {
             });
 
         if (res) {
-            setIsLoading(false);
-            setArticle(res);
+            return res;
         }
-        return () => {
-            source.cancel();
-        };
     };
 
     return (
