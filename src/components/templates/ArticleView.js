@@ -40,7 +40,7 @@ export default function ArticleView() {
         setArticleTitle(article?.data?.title);
         setArticleContent(article?.data?.content);
         setComments(article?.data?.comments);
-    }, [article?.data?.title, article?.data?.content, article?.data?.comments]);
+    }, [article]);
 
     const handleDelete = () => {
         console.log(`${preUrl}/posts/${id}`);
@@ -101,6 +101,9 @@ export default function ArticleView() {
             )
             .then((res) => {
                 console.log(res);
+                console.log(res?.data?.refreshPost?.comments);
+                setComments(res?.data?.refreshPost?.comments);
+                setCommentContent("")
             })
             .catch((e) => {
                 console.log(e);
@@ -165,17 +168,28 @@ export default function ArticleView() {
                     {comments && (
                         <>
                             <Title className="comments-title" text="Comments" />
-                            <input
-                                type="text"
-                                value={commentContent}
-                                onChange={(evt) =>
-                                    handleChange(evt, setCommentContent)
-                                }
+                            <div className="comment-submission-form">
+                                <input
+                                    type="text"
+                                    value={commentContent}
+                                    className="new-comment-input"
+                                    placeholder="Say something about this..."
+                                    onChange={(evt) =>
+                                        handleChange(evt, setCommentContent)
+                                    }
+                                />
+                                <button
+                                    className="comment-submission confirmation-btn"
+                                    onClick={handleNewComment}
+                                >
+                                    Submit
+                                </button>
+                            </div>
+                            <ArticleComments
+                                comments={comments}
+                                postId={id}
+                                setComments={setComments}
                             />
-                            <button onClick={handleNewComment}>
-                                Add new comment
-                            </button>
-                            <ArticleComments comments={comments} />
                         </>
                     )}
                 </>
