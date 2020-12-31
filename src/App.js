@@ -52,12 +52,12 @@ export default function App() {
                                 </ArticleContextProvider>
                             </Route>
 
-                            <Route exact path="/posts">
+                            <Route exact path="/">
                                 <Home />
                             </Route>
 
-                            <Route exact path="/">
-                                <Redirect to="/posts" />
+                            <Route path="*">
+                                <Redirect to="/" />
                             </Route>
                         </PostsContextProvider>
                     </Switch>
