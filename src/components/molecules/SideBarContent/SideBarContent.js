@@ -33,12 +33,11 @@ export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
             )}
 
             {navLinksPaths.map((e, i) => (
-                <>
+                <div key={i}>
                     {e.requiresAuth && isAuthenticated && (
                         <NavLink
                             className="side-bar-item"
                             exact
-                            key={i}
                             to={e.to}
                             activeClassName="active"
                             onClick={() => {
@@ -48,7 +47,7 @@ export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
                             {e.text}
                         </NavLink>
                     )}
-                </>
+                </div>
             ))}
 
             <div className="side-bar-CTA-container">

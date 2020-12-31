@@ -8,11 +8,14 @@ import SideBarProfile from "../../molecules/SideBarProfile/SideBarProfile";
 import Cookies from "universal-cookie";
 
 import "./SideBar.sass";
+import { ApiContext } from "../../contexts/ApiContext";
 
 export default function SideBar() {
     const { toggleSideBar, isSideBarOpen, closeSideBar } = useContext(
         SideBarContext
     );
+
+    const { currUser } = useContext(ApiContext);
 
     const cookies = new Cookies();
 
@@ -71,8 +74,8 @@ export default function SideBar() {
                             {isAuthenticated ? (
                                 <SideBarProfile
                                     imageSrc="https://images.iphonephotographyschool.com/24755/portrait-photography.jpg"
-                                    profileName="Ammar Kashif"
-                                    profileHandle="@ammar"
+                                    profileName={currUser?.fullName}
+                                    profileHandle={currUser?.username}
                                     profileNibbles="5.7K"
                                 />
                             ) : (
