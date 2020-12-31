@@ -7,6 +7,7 @@ export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const [fullName, setFullName] = useState("");
 
     const { SignUp } = useContext(ApiContext);
 
@@ -16,71 +17,26 @@ export default function Login() {
 
     const handleSignUp = (evt) => {
         evt.preventDefault();
-        SignUp(email, password, username);
+        SignUp(email, password, username, fullName);
     };
 
     return (
-        // <div className="login-page">
-        //     <div className="login-info-container">
-        //         <h1 className="login-info">Sign Up Now</h1>
-        //         <p className="login-subinfo">
-        //             Please fill out the details below to sign up
-        //         </p>
-        //     </div>
-
-        //     <form className="login-form" onSubmit={handleSignUp}>
-        //         <div className="login-input-field-container">
-        //             <input
-        //                 type="text"
-        //                 placeholder="Username"
-        //                 name="Username"
-        //                 id="Username"
-        //                 className="login-input-field"
-        //                 onChange={(evt) => {
-        //                     handleChange(evt, setUsername);
-        //                 }}
-        //             />
-        //         </div>
-        //         <div className="login-input-field-container">
-        //             <input
-        //                 type="email"
-        //                 placeholder="E-mail"
-        //                 name="email"
-        //                 id="email"
-        //                 className="login-input-field"
-        //                 onChange={(evt) => {
-        //                     handleChange(evt, setEmail);
-        //                 }}
-        //             />
-        //         </div>
-        //         <div className="login-input-field-container">
-        //             <input
-        //                 type="password"
-        //                 placeholder="Password"
-        //                 name="password"
-        //                 id="password"
-        //                 className="login-input-field"
-        //                 onChange={(evt) => {
-        //                     handleChange(evt, setPassword);
-        //                 }}
-        //             />
-        //         </div>
-
-        //         <p className="login-subinfo">
-        //             Already have an account?
-        //             <Link to="/login"> Log in Instead</Link>
-        //         </p>
-        //         <button type="submit" className="confirmation-btn login-btn">
-        //             Sign Up
-        //         </button>
-        //     </form>
-        // </div>
         <div className="login-page">
             <div className="login-info-container">
                 <h1 className="login-info">Register</h1>
             </div>
 
             <form className="login-form" onSubmit={handleSignUp}>
+                <div className="login-input-field-container">
+                    <CustomInputField
+                        placeholder="Your full name"
+                        label="Full Name"
+                        onChange={(evt) => {
+                            handleChange(evt, setFullName);
+                        }}
+                    />
+                </div>
+
                 <div className="login-input-field-container">
                     <CustomInputField
                         placeholder="@Username"
@@ -129,7 +85,7 @@ export default function Login() {
 
                 <button className="google-btn">
                     <svg
-                        className="google-logo"
+                        className="logo"
                         width="18"
                         height="20"
                         viewBox="0 0 18 20"
