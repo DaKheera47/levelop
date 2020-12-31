@@ -5,11 +5,11 @@ import "./ArticleView.sass";
 import ArticleHeader from "../molecules/ArticleHeader/ArticleHeader";
 import ArticleComments from "../molecules/ArticleComments/ArticleComments";
 import ArticleInput from "../molecules/ArticleInput/ArticleInput";
+import Title from "../atoms/Title";
 import { useParams, useHistory } from "react-router-dom";
 import { ArticleContext } from "../contexts/ArticleContext";
 import { ApiContext } from "../contexts/ApiContext";
 import axios from "axios";
-import querystring from "querystring";
 
 export default function ArticleView() {
     // contexts
@@ -20,22 +20,9 @@ export default function ArticleView() {
     let { id } = useParams();
     const history = useHistory();
 
-    const comments = [
-        {
-            author: "Horse Ammar",
-            content:
-                "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
-        },
-        {
-            author: "Horse Ammar",
-            content:
-                "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
-        },
-    ];
-
     useEffect(() => {
         getArticle(id);
-    }, [getArticle, id]);
+    }, [id]);
 
     const handleChange = (evt, changer) => {
         changer(evt.target.value);
@@ -44,12 +31,16 @@ export default function ArticleView() {
     // state
     const [articleContent, setArticleContent] = useState("");
     const [articleTitle, setArticleTitle] = useState("");
+    const [commentContent, setCommentContent] = useState("");
+    const [comments, setComments] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
+        console.log(article?.data);
         setArticleTitle(article?.data?.title);
         setArticleContent(article?.data?.content);
-    }, [article?.data?.content, article?.data?.title]);
+        setComments(article?.data?.comments);
+    }, [article?.data?.title, article?.data?.content, article?.data?.comments]);
 
     const handleDelete = () => {
         console.log(`${preUrl}/posts/${id}`);
@@ -93,6 +84,26 @@ export default function ArticleView() {
             })
             .then((err) => {
                 console.log(err);
+            });
+    };
+
+    const handleNewComment = () => {
+        console.log(commentContent);
+        axios
+            .post(
+                `${preUrl}/posts/${id}/comments`,
+                { text: commentContent },
+                {
+                    headers: {
+                        Authorization: `${cookies.get("jwt")}`,
+                    },
+                }
+            )
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((e) => {
+                console.log(e);
             });
     };
 
@@ -151,7 +162,22 @@ export default function ArticleView() {
                         />
                     )}
 
-                    <ArticleComments comments={comments} />
+                    {comments && (
+                        <>
+                            <Title className="comments-title" text="Comments" />
+                            <input
+                                type="text"
+                                value={commentContent}
+                                onChange={(evt) =>
+                                    handleChange(evt, setCommentContent)
+                                }
+                            />
+                            <button onClick={handleNewComment}>
+                                Add new comment
+                            </button>
+                            <ArticleComments comments={comments} />
+                        </>
+                    )}
                 </>
             )}
         </div>
