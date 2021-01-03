@@ -1,3 +1,5 @@
+@import ../../theme
+
 .home-left-panel-links-container
     display: flex
     flex-wrap: wrap
@@ -28,6 +30,40 @@
 .home-panel-link-active
     @extend .home-panel-link
     color: black
+
+.home-panel-CTA
+    @extend .home-panel-link
+    font-family: $default-font
+
+    color: #fff
+    font-weight: 600
+    font-size: 18px
+    border: none
+    height: 36px
+    width: 100%
+    text-decoration: none
+    display: flex
+    justify-content: center
+    align-items: center
+    margin-top: 10px
+
+    background: $primary-orange
+    border-radius: 4px
+
+.home-panel-logout-container
+    width: 51%
+
+.home-panel-secondary-CTA
+    @extend .home-panel-CTA
+    background-color: white
+    border: 2px solid $primary-orange
+    color: $primary-orange
+
+.home-panel-logout
+    @extend .home-panel-link
+    cursor: pointer
+    color: $logout-red
+    margin: 0
 
 @media screen and ( min-width: 768px )
     .home-page

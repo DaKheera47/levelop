@@ -20,8 +20,15 @@ const ApiContextProvider = (props) => {
     });
 
     const [currUser, setCurrUser] = useState({});
+    const [isAuthenticated, setIsAuthenticated] = useState(
+        !!cookies.get("jwt")
+    );
 
     axios.defaults.withCredentials = true;
+
+    const checkIsAuthenticated = () => {
+        setIsAuthenticated(!!cookies.get("jwt"));
+    };
 
     const SignUp = (email, password, username, fullName) => {
         authAxios
@@ -36,6 +43,7 @@ const ApiContextProvider = (props) => {
                 cookies.set("jwt", res?.data?.token);
                 setCurrUser(res?.data?.newUser);
                 console.log(currUser);
+                checkIsAuthenticated();
                 history.push("/");
             })
             .catch((res) => {
@@ -60,6 +68,7 @@ const ApiContextProvider = (props) => {
                     username: res?.data?.user?.username,
                 });
                 console.log(res);
+                checkIsAuthenticated();
                 history.push("/");
             })
             .catch((res) => {
@@ -70,6 +79,7 @@ const ApiContextProvider = (props) => {
 
     const Logout = () => {
         cookies.set("jwt", "", { path: "/" });
+        checkIsAuthenticated();
     };
 
     return (
@@ -83,6 +93,8 @@ const ApiContextProvider = (props) => {
                 currUser,
                 authAxios,
                 preUrlAxios,
+                checkIsAuthenticated,
+                isAuthenticated,
             }}
         >
             {props.children}

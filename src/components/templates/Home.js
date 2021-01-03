@@ -1,15 +1,20 @@
-import React, { useEffect, useContext } from "react";
-import { NavLink } from "react-router-dom";
-import Post from "../molecules/Post/Post";
-import HomeProfile from "../molecules/HomeProfile/HomeProfile";
+import React, { useContext, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+import { NavLink, Link } from "react-router-dom";
+import Cookies from "universal-cookie";
 import { PostsContext } from "../contexts/AllPostsContext";
+import { ApiContext } from "../contexts/ApiContext";
+import HomeProfile from "../molecules/HomeProfile/HomeProfile";
+import Post from "../molecules/Post/Post";
 import "./homeStyle.sass";
 
 export default function Home() {
     const isDesktopOrLaptop = useMediaQuery({
         query: "(min-device-width: 768px)",
     });
+    const cookies = new Cookies();
+
+    const { currUser, Logout, isAuthenticated } = useContext(ApiContext);
 
     const { getAllPosts, allPosts, isLoading } = useContext(PostsContext);
 
@@ -30,45 +35,93 @@ export default function Home() {
         />
     ));
 
+    const navLinksPaths = [
+        {
+            to: "/",
+            text: "Feed",
+            requiresAuth: true,
+        },
+        {
+            to: "/settings",
+            text: "Settings",
+            requiresAuth: true,
+        },
+        {
+            to: "/saved",
+            text: "Saved",
+            requiresAuth: true,
+        },
+    ];
+
     return (
         <>
             <div className="home-page">
                 {isDesktopOrLaptop && (
                     <div className="home-left-panel">
                         <div className="profile">
-                            <HomeProfile
-                                imageSrc="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
-                                profileHandle="@VIBEGANG"
-                                profileName="Horse Ammar"
-                                profileNibbles={50}
-                            />
+                            {isAuthenticated ? (
+                                <HomeProfile
+                                    imageSrc="https://cdn.discordapp.com/attachments/534742075783249931/795274374172901406/Facedp.jpg"
+                                    profileHandle={`@${currUser?.username}`}
+                                    profileName={currUser?.fullName}
+                                    profileNibbles="50K"
+                                />
+                            ) : (
+                                <HomeProfile
+                                    imageSrc="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                                    profileHandle="@guest"
+                                    profileName="Hello Guest!"
+                                    profileNibbles="0K"
+                                />
+                            )}
                         </div>
 
                         <div className="home-left-panel-links-container">
-                            <NavLink
-                                to="/"
-                                className="home-panel-link"
-                                activeClassName="home-panel-link-active"
-                            >
-                                Feed
-                            </NavLink>
-                            <NavLink
-                                to="/saved"
-                                className="home-panel-link"
-                                activeClassName="home-panel-link-active"
-                            >
-                                Saved
-                            </NavLink>
-                            <NavLink
-                                to="/settings"
-                                className="home-panel-link"
-                                activeClassName="home-panel-link-active"
-                            >
-                                Settings
-                            </NavLink>
+                            {navLinksPaths.map(
+                                (e) =>
+                                    e.requiresAuth &&
+                                    isAuthenticated && (
+                                        <NavLink
+                                            to={e.to}
+                                            className="home-panel-link"
+                                            activeClassName="home-panel-link-active"
+                                        >
+                                            {e.text}
+                                        </NavLink>
+                                    )
+                            )}
+                            {isAuthenticated ? (
+                                <div className="home-panel-logout-container">
+                                    <hr color="#fa6400" size="1" style={{marginTop: 20}} />
+                                    <p
+                                        to="/"
+                                        className="home-panel-logout"
+                                        onClick={Logout}
+                                    >
+                                        Logout
+                                    </p>
+                                </div>
+                            ) : (
+                                <>
+                                    <Link
+                                        to="/signup"
+                                        className="home-panel-CTA"
+                                    >
+                                        Sign Up
+                                    </Link>
+
+                                    <Link
+                                        to="/login"
+                                        className="home-panel-secondary-CTA"
+                                    >
+                                        Log In
+                                    </Link>
+                                </>
+                            )}
                         </div>
                     </div>
                 )}
+
                 {isLoading ? (
                     <p>Loading</p>
                 ) : (

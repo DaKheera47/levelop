@@ -1,23 +1,20 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-
-// pages
-import Home from "./components/templates/Home";
-import Settings from "./components/templates/Settings";
-import ArticleView from "./components/templates/ArticleView";
-import Login from "./components/templates/Login";
-import SignUp from "./components/templates/SignUp";
-import NewArticle from "./components/templates/NewArticle";
-
-// components
-import NavBar from "./components/organisms/Nav/Nav";
-
+import { Redirect, Route, Switch } from "react-router-dom";
+import { PostsContextProvider } from "./components/contexts/AllPostsContext";
+import { ApiContextProvider } from "./components/contexts/ApiContext";
+import { ArticleContextProvider } from "./components/contexts/ArticleContext";
 // contexts
 import { NewArticleContextProvider } from "./components/contexts/NewPostContext";
 import { SideBarProvider } from "./components/contexts/SideBarContext";
-import { PostsContextProvider } from "./components/contexts/AllPostsContext";
-import { ArticleContextProvider } from "./components/contexts/ArticleContext";
-import { ApiContextProvider } from "./components/contexts/ApiContext";
+// components
+import NavBar from "./components/organisms/Nav/Nav";
+import ArticleView from "./components/templates/ArticleView";
+// pages
+import Home from "./components/templates/Home";
+import Login from "./components/templates/Login";
+import NewArticle from "./components/templates/NewArticle";
+import Settings from "./components/templates/Settings";
+import SignUp from "./components/templates/SignUp";
 
 export default function App() {
     return (
