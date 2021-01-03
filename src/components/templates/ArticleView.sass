@@ -21,29 +21,32 @@
     justify-content: flex-start
     align-items: center
     width: 100%
+    margin-top: 20px
+    margin-bottom: 20px
 
 .new-comment-input
     border: none
     background-color: rgba(250, 100, 0, 0.10)
-    height: 32px
+    height: 24px
     font-size: 14px
     font-family: $default-font
-    padding-left: 10px
-    padding-right: 10px
-    // width: 60vw
+    padding: 5px 10px
     width: 100%
     margin-right: 10px
+    border-radius: 5px
+    resize: none
 
     &::placeholder
         color: rgba(80, 80, 80, 0.5)
 
 .comment-submission
     margin: 0 !important
+    height: 34px !important
 
 @media screen and ( max-width: 400px )
     .comment-submission-form
         flex-wrap: wrap
-    
+
     .comment-submission
         margin-top: 5px !important
 
@@ -57,3 +60,7 @@
 
     .article-content
         font-size: 20px
+
+    .new-comment-input
+        height: 55px
+        font-size: 18px

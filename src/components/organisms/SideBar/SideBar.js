@@ -24,7 +24,7 @@ export default function SideBar() {
 
     const navLinksPaths = [
         {
-            to: "/posts",
+            to: "/",
             text: "Feed",
             requiresAuth: true,
         },
@@ -73,9 +73,9 @@ export default function SideBar() {
                         >
                             {isAuthenticated ? (
                                 <SideBarProfile
-                                    imageSrc="https://images.iphonephotographyschool.com/24755/portrait-photography.jpg"
+                                    imageSrc="https://cdn.discordapp.com/attachments/534742075783249931/795274374172901406/Facedp.jpg"
                                     profileName={currUser?.fullName}
-                                    profileHandle={currUser?.username}
+                                    profileHandle={`@${currUser?.username}`}
                                     profileNibbles="5.7K"
                                 />
                             ) : (

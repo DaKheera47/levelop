@@ -28,6 +28,7 @@ export default function NewArticle() {
         makeNewPost(articleTitle, articleContent).then((res) => {
             setArticleContent("");
             setArticleTitle("");
+            history.push("/");
         });
     };
 

@@ -1,35 +1,44 @@
-import React, { createContext, useState } from "react";
 import axios from "axios";
-import Cookies from "universal-cookie";
+import React, { createContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 export const ApiContext = createContext();
 
 const ApiContextProvider = (props) => {
     const cookies = new Cookies();
-    const preUrl = "http://ammar-c55ab810.localhost.run";
+    const preUrl = "http://localhost:6969";
     const history = useHistory();
+    const authAxios = axios.create({
+        baseURL: preUrl,
+        headers: {
+            Authorization: `${cookies.get("jwt")}`,
+        },
+    });
+    const preUrlAxios = axios.create({
+        baseURL: preUrl,
+    });
 
     const [currUser, setCurrUser] = useState({});
 
     axios.defaults.withCredentials = true;
 
     const SignUp = (email, password, username, fullName) => {
-        axios
-            .post(`${preUrl}/register`, {
+        authAxios
+            .post(`register`, {
                 email: email,
                 password: password,
                 username: username,
                 fullname: fullName,
             })
-            .then(function (res) {
+            .then((res) => {
                 //handle success
                 cookies.set("jwt", res?.data?.token);
                 setCurrUser(res?.data?.newUser);
                 console.log(currUser);
                 history.push("/");
             })
-            .catch(function (res) {
+            .catch((res) => {
                 //handle error
                 console.log(res);
             });
@@ -37,44 +46,44 @@ const ApiContextProvider = (props) => {
 
     const Login = (email, password) => {
         console.log(email, password);
-        axios
-            .post(
-                `${preUrl}/login`,
-                {
-                    email: email,
-                    password: password,
-                },
-                {
-                    headers: {
-                        Authorization: `${cookies.get("jwt")}`,
-                    },
-                }
-            )
-            .then(function (res) {
+        authAxios
+            .post(`login`, {
+                email: email,
+                password: password,
+            })
+            .then((res) => {
                 //handle success
-                cookies.set("jwt", res?.data?.token);
+                cookies.set("jwt", res?.data?.token, { path: "/" });
                 setCurrUser({
-                    email: res?.data?.email,
-                    fullName: res?.data?.fullname,
-                    username: res?.data?.username,
+                    email: res?.data?.user?.email,
+                    fullName: res?.data?.user?.fullname,
+                    username: res?.data?.user?.username,
                 });
                 console.log(res);
-                console.log(currUser);
                 history.push("/");
             })
-            .catch(function (res) {
+            .catch((res) => {
                 //handle error
                 console.log(res);
             });
     };
 
     const Logout = () => {
-        cookies.set("jwt", "");
+        cookies.set("jwt", "", { path: "/" });
     };
 
     return (
         <ApiContext.Provider
-            value={{ preUrl, Login, Logout, cookies, SignUp, currUser }}
+            value={{
+                preUrl,
+                Login,
+                Logout,
+                cookies,
+                SignUp,
+                currUser,
+                authAxios,
+                preUrlAxios,
+            }}
         >
             {props.children}
         </ApiContext.Provider>

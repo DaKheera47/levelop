@@ -1,28 +1,34 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AiOutlineLike, AiOutlineShareAlt } from "react-icons/ai";
 import { VscBookmark } from "react-icons/vsc";
-import "./ArticleView.sass";
-import ArticleHeader from "../molecules/ArticleHeader/ArticleHeader";
-import ArticleComments from "../molecules/ArticleComments/ArticleComments";
-import ArticleInput from "../molecules/ArticleInput/ArticleInput";
+import { useParams } from "react-router-dom";
+import TextareaAutosize from "react-textarea-autosize";
 import Title from "../atoms/Title";
-import { useParams, useHistory } from "react-router-dom";
-import { ArticleContext } from "../contexts/ArticleContext";
 import { ApiContext } from "../contexts/ApiContext";
-import axios from "axios";
+import { ArticleContext } from "../contexts/ArticleContext";
+import ArticleComments from "../molecules/ArticleComments/ArticleComments";
+import ArticleHeader from "../molecules/ArticleHeader/ArticleHeader";
+import ArticleInput from "../molecules/ArticleInput/ArticleInput";
+import "./ArticleView.sass";
 
 export default function ArticleView() {
     // contexts
-    const { getArticle, article, isLoading } = useContext(ArticleContext);
+    const {
+        getArticle,
+        article,
+        isLoading,
+        handleDeletePost,
+        handleEditPost,
+        handleNewComment,
+    } = useContext(ArticleContext);
     const { preUrl, cookies } = useContext(ApiContext);
 
     // react router
-    let { id } = useParams();
-    const history = useHistory();
+    let { id: postId } = useParams();
 
     useEffect(() => {
-        getArticle(id);
-    }, [id]);
+        getArticle(postId);
+    }, [postId]);
 
     const handleChange = (evt, changer) => {
         changer(evt.target.value);
@@ -31,84 +37,13 @@ export default function ArticleView() {
     // state
     const [articleContent, setArticleContent] = useState("");
     const [articleTitle, setArticleTitle] = useState("");
-    const [commentContent, setCommentContent] = useState("");
-    const [comments, setComments] = useState([]);
+    const [newCommentContent, setNewCommentContent] = useState("");
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        console.log(article?.data);
-        setArticleTitle(article?.data?.title);
-        setArticleContent(article?.data?.content);
-        setComments(article?.data?.comments);
+        setArticleTitle(article?.title);
+        setArticleContent(article?.content);
     }, [article]);
-
-    const handleDelete = () => {
-        console.log(`${preUrl}/posts/${id}`);
-        axios
-            .delete(`${preUrl}/posts/${id}`, {
-                headers: {
-                    Authorization: `${cookies.get("jwt")}`,
-                },
-            })
-            .then((e) => {
-                console.log(e);
-                history.pushState("/");
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    };
-
-    const handleEdit = () => {
-        setIsEditing((prev) => !prev);
-    };
-
-    const handleSubmit = () => {
-        axios
-            .put(
-                `${preUrl}/posts/${id}`,
-                {
-                    post: {
-                        title: articleTitle,
-                        content: articleContent,
-                    },
-                },
-                {
-                    headers: {
-                        Authorization: `${cookies.get("jwt")}`,
-                    },
-                }
-            )
-            .then((res) => {
-                console.log(res);
-            })
-            .then((err) => {
-                console.log(err);
-            });
-    };
-
-    const handleNewComment = () => {
-        console.log(commentContent);
-        axios
-            .post(
-                `${preUrl}/posts/${id}/comments`,
-                { text: commentContent },
-                {
-                    headers: {
-                        Authorization: `${cookies.get("jwt")}`,
-                    },
-                }
-            )
-            .then((res) => {
-                console.log(res);
-                console.log(res?.data?.refreshPost?.comments);
-                setComments(res?.data?.refreshPost?.comments);
-                setCommentContent("")
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    };
 
     const socialBtns = (
         <div className="article-view-social-btns">
@@ -137,20 +72,31 @@ export default function ArticleView() {
             ) : (
                 <>
                     <ArticleHeader
-                        author={article?.data?.author?.username}
+                        author={article?.author?.username}
                         time="8"
-                        title={article?.data?.title}
+                        title={articleTitle}
                         profileUrl="https://miro.medium.com/fit/c/56/56/1*AwBz4NW9_M45J-sBlmH-lA.png"
                     />
 
-                    <div className="article-content">
-                        {article?.data?.content}
-                    </div>
+                    <div className="article-content">{articleContent}</div>
 
                     {socialBtns}
 
-                    <button onClick={handleDelete}>Delete Post</button>
-                    <button onClick={handleEdit}>Edit Post</button>
+                    <button
+                        onClick={() => {
+                            handleDeletePost(postId);
+                        }}
+                    >
+                        Delete Post
+                    </button>
+                    <button
+                        onClick={() => {
+                            // toggle isEditing post
+                            setIsEditing((prev) => !prev);
+                        }}
+                    >
+                        Edit Post
+                    </button>
 
                     {isEditing && !isLoading && (
                         <ArticleInput
@@ -160,35 +106,49 @@ export default function ArticleView() {
                             setArticleTitle={setArticleTitle}
                             handleChange={handleChange}
                             buttonText="Update"
-                            // handleCancel={handleCancel}
-                            handleSubmit={handleSubmit}
+                            handleSubmit={() => {
+                                handleEditPost(
+                                    postId,
+                                    articleTitle,
+                                    articleContent
+                                );
+                            }}
                         />
                     )}
 
-                    {comments && (
+                    {article?.comments && (
                         <>
                             <Title className="comments-title" text="Comments" />
                             <div className="comment-submission-form">
-                                <input
+                                <TextareaAutosize
                                     type="text"
-                                    value={commentContent}
+                                    value={newCommentContent}
                                     className="new-comment-input"
                                     placeholder="Say something about this..."
                                     onChange={(evt) =>
-                                        handleChange(evt, setCommentContent)
+                                        handleChange(evt, setNewCommentContent)
                                     }
                                 />
                                 <button
                                     className="comment-submission confirmation-btn"
-                                    onClick={handleNewComment}
+                                    onClick={() => {
+                                        handleNewComment(
+                                            postId,
+                                            newCommentContent,
+                                            setNewCommentContent
+                                        );
+                                    }}
                                 >
                                     Submit
                                 </button>
                             </div>
+
                             <ArticleComments
-                                comments={comments}
-                                postId={id}
-                                setComments={setComments}
+                                comments={article?.comments}
+                                postId={postId}
+                                newCommentContent={newCommentContent}
+                                setNewCommentContent={setNewCommentContent}
+                                handleNewComment={handleNewComment}
                             />
                         </>
                     )}

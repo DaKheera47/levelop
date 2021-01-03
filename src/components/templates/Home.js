@@ -8,7 +8,7 @@ import "./homeStyle.sass";
 
 export default function Home() {
     const isDesktopOrLaptop = useMediaQuery({
-        query: "(min-device-width: 1224px)",
+        query: "(min-device-width: 768px)",
     });
 
     const { getAllPosts, allPosts, isLoading } = useContext(PostsContext);
