@@ -4,7 +4,6 @@ import { VscBookmark } from "react-icons/vsc";
 import { useParams } from "react-router-dom";
 import TextareaAutosize from "react-textarea-autosize";
 import Title from "../atoms/Title";
-import { ApiContext } from "../contexts/ApiContext";
 import { ArticleContext } from "../contexts/ArticleContext";
 import ArticleComments from "../molecules/ArticleComments/ArticleComments";
 import ArticleHeader from "../molecules/ArticleHeader/ArticleHeader";
@@ -21,7 +20,6 @@ export default function ArticleView() {
         handleEditPost,
         handleNewComment,
     } = useContext(ArticleContext);
-    const { preUrl, cookies } = useContext(ApiContext);
 
     // react router
     let { id: postId } = useParams();

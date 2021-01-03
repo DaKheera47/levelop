@@ -34,13 +34,14 @@
 
 @media screen and ( min-width: $med-break )
     .post-body
-        width: 50vw
-        min-height: 150px
+        width: 40vw
+        border-radius: 8px
+        padding: 20px 25px
+        min-height: 100px
         max-height: 250px
 
     .post-title
-        font-weight: bold
-        font-size: 24px
+        font-size: 22px
         line-height: 30px
 
     .post-img
@@ -61,3 +62,22 @@
         color: $primary-orange
         border-radius: 5px
         font-family: $default-font
+
+@media screen and ( min-width: $med-break ) and ( max-width: $lg-break )
+    .post-body
+        width: 40vw
+        min-height: 50px
+        max-height: 80px
+        padding: 15px 15px
+
+    .post-title
+        font-size: 16px
+        line-height: normal
+
+    .post-img
+        width: 75px
+
+    .post-author
+        margin-top: 5px
+        font-size: 12px
+        font-weight: normal

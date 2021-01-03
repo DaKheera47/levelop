@@ -30,10 +30,12 @@
 .navbar-new-post
     display: none
 
-@media screen and ( min-width: 768px )
+@media screen and ( min-width: $med-break )
     .navbar
         height: 75px
-        justify-content: space-around
+        padding-left: 13vw
+        padding-right: 13vw
+        justify-content: space-between
 
     .navbar-hamburger
         display: none
@@ -47,3 +49,7 @@
         align-items: center
         font-weight: 500
         text-decoration: none
+
+// @media screen and ( min-width: $med-break ) and ( max-width: $lg-break )
+//     .navbar
+//         height: 60px

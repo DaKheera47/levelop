@@ -46,7 +46,7 @@ export default function App() {
                         </Route>
 
                         <PostsContextProvider>
-                            <Route exact path="/posts/:id">
+                            <Route path="/posts/:id">
                                 <ArticleContextProvider>
                                     <ArticleView />
                                 </ArticleContextProvider>
