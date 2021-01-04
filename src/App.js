@@ -43,7 +43,7 @@ export default function App() {
                         </Route>
 
                         <PostsContextProvider>
-                            <Route path="/posts/:id">
+                            <Route exact path="/posts/:id">
                                 <ArticleContextProvider>
                                     <ArticleView />
                                 </ArticleContextProvider>
@@ -53,7 +53,7 @@ export default function App() {
                                 <Home />
                             </Route>
 
-                            <Route path="/*">
+                            <Route path="*">
                                 <Redirect to="/" />
                             </Route>
                         </PostsContextProvider>
