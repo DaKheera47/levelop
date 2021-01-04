@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import { NavLink, Link } from "react-router-dom";
-import Cookies from "universal-cookie";
+import { Link, NavLink } from "react-router-dom";
 import { PostsContext } from "../contexts/AllPostsContext";
 import { ApiContext } from "../contexts/ApiContext";
 import HomeProfile from "../molecules/HomeProfile/HomeProfile";
@@ -12,7 +11,6 @@ export default function Home() {
     const isDesktopOrLaptop = useMediaQuery({
         query: "(min-device-width: 768px)",
     });
-    const cookies = new Cookies();
 
     const { currUser, Logout, isAuthenticated } = useContext(ApiContext);
 
@@ -92,7 +90,11 @@ export default function Home() {
                             )}
                             {isAuthenticated ? (
                                 <div className="home-panel-logout-container">
-                                    <hr color="#fa6400" size="1" style={{marginTop: 20}} />
+                                    <hr
+                                        color="#fa6400"
+                                        size="1"
+                                        style={{ marginTop: 20 }}
+                                    />
                                     <p
                                         to="/"
                                         className="home-panel-logout"

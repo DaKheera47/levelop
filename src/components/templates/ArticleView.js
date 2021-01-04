@@ -26,7 +26,7 @@ export default function ArticleView() {
 
     useEffect(() => {
         getArticle(postId);
-    }, [postId]);
+    }, [postId, getArticle]);
 
     const handleChange = (evt, changer) => {
         changer(evt.target.value);
