@@ -80,6 +80,7 @@ const ApiContextProvider = (props) => {
     const Logout = () => {
         cookies.set("jwt", "", { path: "/" });
         checkIsAuthenticated();
+        history.push("/login")
     };
 
     return (
