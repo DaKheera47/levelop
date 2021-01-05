@@ -1,38 +1,30 @@
 import React, { createContext, useState, useContext } from "react";
-import axios from "axios";
 import { ApiContext } from "../contexts/ApiContext";
+import { useHistory } from "react-router-dom";
 
 export const NewPostsContext = createContext();
 
 const NewArticleContextProvider = (props) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const { preUrl, cookies } = useContext(ApiContext);
+    const [isLoading, setIsLoading] = useState(false);
+    const { authAxios } = useContext(ApiContext);
+    const history = useHistory();
 
     const makeNewPost = async (articleTitle, articleContent) => {
-        const config = {
-            headers: {
-                Authorization: cookies.get("jwt"),
-            },
-        };
+        setIsLoading(true);
 
-        const data = {
-            title: articleTitle,
-            content: articleContent,
-        };
-
-        console.log(data);
-
-        const res = await axios
-            .post(`${preUrl}/posts`, data, config)
+        authAxios
+            .post(`posts`, {
+                title: articleTitle,
+                content: articleContent,
+            })
             .then((res) => {
+                setIsLoading(false);
                 console.log(res);
+                history.push("/");
             })
             .catch((e) => {
                 console.log(e);
             });
-        if (res) {
-            setIsLoading(false);
-        }
     };
 
     return (

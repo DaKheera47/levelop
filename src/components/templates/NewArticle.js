@@ -10,7 +10,7 @@ export default function NewArticle() {
     const [articleTitle, setArticleTitle] = useState("");
     const [articleContent, setArticleContent] = useState("");
 
-    const { makeNewPost } = useContext(NewPostsContext);
+    const { makeNewPost, isLoading } = useContext(NewPostsContext);
 
     const handleChange = (evt, changer) => {
         changer(evt.target.value);
@@ -28,21 +28,24 @@ export default function NewArticle() {
         makeNewPost(articleTitle, articleContent).then((res) => {
             setArticleContent("");
             setArticleTitle("");
-            history.push("/");
         });
     };
 
     return (
         <>
-            <ArticleInput
-                handleSubmit={handleSubmit}
-                articleTitle={articleTitle}
-                articleContent={articleContent}
-                setArticleContent={setArticleContent}
-                setArticleTitle={setArticleTitle}
-                handleCancel={handleCancel}
-                handleChange={handleChange}
-            />
+            {isLoading ? (
+                <p>Loading...</p>
+            ) : (
+                <ArticleInput
+                    handleSubmit={handleSubmit}
+                    articleTitle={articleTitle}
+                    articleContent={articleContent}
+                    setArticleContent={setArticleContent}
+                    setArticleTitle={setArticleTitle}
+                    handleCancel={handleCancel}
+                    handleChange={handleChange}
+                />
+            )}
         </>
     );
 }
