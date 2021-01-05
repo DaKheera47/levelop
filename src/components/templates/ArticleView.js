@@ -26,7 +26,8 @@ export default function ArticleView() {
 
     useEffect(() => {
         getArticle(postId);
-    }, [postId, getArticle]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [postId]);
 
     const handleChange = (evt, changer) => {
         changer(evt.target.value);
