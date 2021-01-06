@@ -67,7 +67,6 @@ const ApiContextProvider = (props) => {
                     fullName: res?.data?.user?.fullname,
                     username: res?.data?.user?.username,
                 });
-                console.log(res);
                 checkIsAuthenticated();
                 history.push("/");
             })
@@ -80,7 +79,7 @@ const ApiContextProvider = (props) => {
     const Logout = () => {
         cookies.set("jwt", "", { path: "/" });
         checkIsAuthenticated();
-        history.push("/login")
+        history.push("/login");
     };
 
     return (
