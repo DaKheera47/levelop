@@ -19,7 +19,10 @@ const ApiContextProvider = (props) => {
         baseURL: preUrl,
     });
 
-    const [currUser, setCurrUser] = useState({});
+    const [currUser, setCurrUser] = useState(
+        JSON.parse(localStorage.getItem("user"))
+    );
+
     const [isAuthenticated, setIsAuthenticated] = useState(
         !!cookies.get("jwt")
     );
@@ -41,8 +44,24 @@ const ApiContextProvider = (props) => {
             .then((res) => {
                 //handle success
                 cookies.set("jwt", res?.data?.token);
-                setCurrUser(res?.data?.newUser);
-                console.log(currUser);
+                checkIsAuthenticated();
+
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify(res?.data?.newUser)
+                );
+
+                if (currUser) {
+                    let userFromLocal = JSON.parse(
+                        localStorage.getItem("user")
+                    );
+                    if (userFromLocal) {
+                        setCurrUser(userFromLocal);
+                    } else {
+                        setCurrUser(res.data.user);
+                    }
+                }
+
                 checkIsAuthenticated();
                 history.push("/");
             })
@@ -62,11 +81,19 @@ const ApiContextProvider = (props) => {
             .then((res) => {
                 //handle success
                 cookies.set("jwt", res?.data?.token, { path: "/" });
-                setCurrUser({
-                    email: res?.data?.user?.email,
-                    fullName: res?.data?.user?.fullname,
-                    username: res?.data?.user?.username,
-                });
+                console.log(JSON.stringify(res?.data?.user));
+                localStorage.setItem("user", JSON.stringify(res?.data?.user));
+
+                if (currUser) {
+                    let userFromLocal = JSON.parse(
+                        localStorage.getItem("user")
+                    );
+                    if (userFromLocal) {
+                        setCurrUser(userFromLocal);
+                    } else {
+                        setCurrUser(res.data.user);
+                    }
+                }
                 checkIsAuthenticated();
                 history.push("/");
             })
@@ -79,6 +106,7 @@ const ApiContextProvider = (props) => {
     const Logout = () => {
         cookies.set("jwt", "", { path: "/" });
         checkIsAuthenticated();
+        setCurrUser({});
         history.push("/login");
     };
 

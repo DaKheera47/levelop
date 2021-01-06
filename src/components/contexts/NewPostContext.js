@@ -18,9 +18,9 @@ const NewArticleContextProvider = (props) => {
                 content: articleContent,
             })
             .then((res) => {
-                setIsLoading(false);
                 console.log(res);
                 history.push("/");
+                setIsLoading(false);
             })
             .catch((e) => {
                 console.log(e);

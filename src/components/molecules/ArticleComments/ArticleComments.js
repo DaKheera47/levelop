@@ -12,6 +12,7 @@ export default function ArticleComments({ comments }) {
                         author={e.author.username}
                         content={e.text}
                         id={e._id}
+                        isCommentOfCurrUser={e.isCommentOfCurrUser}
                     />
                 </div>
             ))}

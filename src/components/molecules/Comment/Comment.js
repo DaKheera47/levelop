@@ -3,7 +3,7 @@ import Title from "../../atoms/Title";
 import { ArticleContext } from "../../contexts/ArticleContext";
 import "./Comment.sass";
 
-export default function Comment({ author, content, id }) {
+export default function Comment({ author, content, id, isCommentOfCurrUser }) {
     const [isEditing, setIsEditing] = useState(false);
     const { article, handleDeleteComment, handleEditComment } = useContext(
         ArticleContext
@@ -32,20 +32,24 @@ export default function Comment({ author, content, id }) {
                 </div>
                 <p className="comment-content">{content}</p>
 
-                <button
-                    onClick={() => {
-                        handleDeleteComment(article?._id, id);
-                    }}
-                >
-                    D
-                </button>
-                <button
-                    onClick={() => {
-                        setIsEditing((prev) => !prev);
-                    }}
-                >
-                    E
-                </button>
+                {isCommentOfCurrUser && (
+                    <>
+                        <button
+                            onClick={() => {
+                                handleDeleteComment(article?._id, id);
+                            }}
+                        >
+                            D
+                        </button>
+                        <button
+                            onClick={() => {
+                                setIsEditing((prev) => !prev);
+                            }}
+                        >
+                            E
+                        </button>
+                    </>
+                )}
 
                 {isEditing && (
                     <>

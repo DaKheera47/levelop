@@ -74,7 +74,7 @@ export default function SideBar() {
                             {isAuthenticated ? (
                                 <SideBarProfile
                                     imageSrc="https://cdn.discordapp.com/attachments/534742075783249931/795274374172901406/Facedp.jpg"
-                                    profileName={currUser?.fullName}
+                                    profileName={currUser?.fullname}
                                     profileHandle={`@${currUser?.username}`}
                                     profileNibbles="5.7K"
                                 />

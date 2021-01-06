@@ -61,7 +61,7 @@ export default function Home() {
                                 <HomeProfile
                                     imageSrc="https://cdn.discordapp.com/attachments/534742075783249931/795274374172901406/Facedp.jpg"
                                     profileHandle={`@${currUser?.username}`}
-                                    profileName={currUser?.fullName}
+                                    profileName={currUser?.fullname}
                                     profileNibbles="50K"
                                 />
                             ) : (

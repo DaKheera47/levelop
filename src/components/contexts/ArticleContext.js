@@ -7,47 +7,39 @@ export const ArticleContext = createContext();
 const ArticleContextProvider = (props) => {
     const [article, setArticle] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const { authAxios, preUrlAxios } = useContext(ApiContext);
-
+    const { authAxios, currUser } = useContext(ApiContext);
     const history = useHistory();
 
+    const createUpdatedArticle = (updatedArticle) => {
+        updatedArticle?.comments.forEach((e) => {
+            // compare author of comment with currently authenticated user
+            // and check if they belong to each other
+            e.isCommentOfCurrUser = e?.author?.id === currUser._id;
+        });
+
+        setArticle(updatedArticle);
+        setIsLoading(false);
+    };
+
     const getArticle = (postId) => {
-        preUrlAxios
+        setIsLoading(true);
+        authAxios
             .get(`posts/${postId}`)
             .then((res) => {
-                setIsLoading(false);
-                setArticle(res?.data);
-                console.log(res?.data);
+                createUpdatedArticle(res.data.foundPost);
             })
             .catch((e) => {
                 console.log(e);
-                setIsLoading(false);
-                setArticle({
-                    data: {
-                        author: { username: "DaKheera47" },
-                        title:
-                            "[Offline] How to learn node.js with MongoDB in just 15 days!",
-                        content: "This is the content of the offline article",
-                        comments: [
-                            {
-                                author: {
-                                    username: "DaKheera47",
-                                },
-                                text: "This is rocket league",
-                            },
-                        ],
-                    },
-                });
             });
     };
 
     const handleDeleteComment = (postId, commentId) => {
-        console.log(commentId);
+        setIsLoading(true);
         authAxios
             .delete(`posts/${postId}/comments/${commentId}`)
             .then((res) => {
                 console.log(res);
-                setArticle(res?.data?.refreshPost);
+                createUpdatedArticle(res.data.refreshPost);
             })
             .catch((e) => {
                 console.log(e);
@@ -55,19 +47,15 @@ const ArticleContextProvider = (props) => {
     };
 
     const handleEditComment = (commentId, postId, newCommentText) => {
-        console.log(newCommentText);
         setIsLoading(true);
         authAxios
             .put(`posts/${postId}/comments/${commentId}`, {
                 text: newCommentText,
             })
             .then((res) => {
-                setIsLoading(false);
-                setArticle(res?.data?.refreshPost);
-                console.log(res?.data);
+                createUpdatedArticle(res.data);
             })
             .catch((e) => {
-                setIsLoading(false);
                 console.log(e);
             });
     };
@@ -94,9 +82,9 @@ const ArticleContextProvider = (props) => {
                 },
             })
             .then((res) => {
-                setIsLoading(false);
                 console.log(res);
-                // setArticle(res?.data?.refreshPost);
+                // TODO: doesn't return complete post
+                // setUpdatedArticle(res.data.editedPost);
             })
             .catch((err) => {
                 console.log(err);
@@ -104,13 +92,10 @@ const ArticleContextProvider = (props) => {
     };
 
     const handleNewComment = (postId, newCommentText, setNewCommentContent) => {
-        console.log(newCommentText);
         authAxios
             .post(`posts/${postId}/comments`, { text: newCommentText })
             .then((res) => {
-                console.log(res);
-                console.log(article);
-                setArticle(res?.data?.refreshPost);
+                createUpdatedArticle(res.data);
                 setNewCommentContent("");
             })
             .catch((e) => {
