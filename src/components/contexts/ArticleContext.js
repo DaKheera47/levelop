@@ -33,33 +33,6 @@ const ArticleContextProvider = (props) => {
             });
     };
 
-    const handleDeleteComment = (postId, commentId) => {
-        setIsLoading(true);
-        authAxios
-            .delete(`posts/${postId}/comments/${commentId}`)
-            .then((res) => {
-                console.log(res);
-                createUpdatedArticle(res.data.refreshPost);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    };
-
-    const handleEditComment = (commentId, postId, newCommentText) => {
-        setIsLoading(true);
-        authAxios
-            .put(`posts/${postId}/comments/${commentId}`, {
-                text: newCommentText,
-            })
-            .then((res) => {
-                createUpdatedArticle(res.data);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    };
-
     const handleDeletePost = (postId) => {
         authAxios
             .delete(`posts/${postId}`)
@@ -88,6 +61,33 @@ const ArticleContextProvider = (props) => {
             })
             .catch((err) => {
                 console.log(err);
+            });
+    };
+
+    const handleDeleteComment = (postId, commentId) => {
+        setIsLoading(true);
+        authAxios
+            .delete(`posts/${postId}/comments/${commentId}`)
+            .then((res) => {
+                console.log(res);
+                createUpdatedArticle(res.data.refreshPost);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
+    const handleEditComment = (commentId, postId, newCommentText) => {
+        setIsLoading(true);
+        authAxios
+            .put(`posts/${postId}/comments/${commentId}`, {
+                text: newCommentText,
+            })
+            .then((res) => {
+                createUpdatedArticle(res.data);
+            })
+            .catch((e) => {
+                console.log(e);
             });
     };
 
