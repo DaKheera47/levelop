@@ -14,6 +14,7 @@ hr
     margin: 0
     float: left
     color: #505050
+    display: block
 
 .comment-date
     float: right
@@ -21,8 +22,11 @@ hr
     color: #505050
 
 .comment-header
-    width: 80%
-    margin: auto 0
+    width: calc( 100% - 86px )
+    margin: 0
+
+.comment-info
+    height: 30px
 
 .comment-content
     margin: 0
@@ -30,7 +34,7 @@ hr
     font-size: 14px
     display: block
     color: #505050
-    margin-left: 62px
+    // margin-left: 62px
     width: 100%
 
 .comment-profileUrl-container
@@ -47,9 +51,6 @@ hr
     .comment-author
         font-size: 20px
         font-weight: 500
-
-    .comment-header
-        width: 85%
 
     .comment-content
         font-size: 16px

@@ -27,13 +27,15 @@ export default function Comment({ author, content, id, isCommentOfCurrUser }) {
                 </div>
 
                 <div className="comment-header">
-                    <Title className="comment-author" text={author} />
-                    <span className="comment-date">24/11/20</span>
+                    <div className="comment-info">
+                        <Title className="comment-author" text={author} />
+                        <span className="comment-date">24/11/20</span>
+                    </div>
+                    <p className="comment-content">{content}</p>
                 </div>
-                <p className="comment-content">{content}</p>
 
                 {isCommentOfCurrUser && (
-                    <>
+                    <div>
                         <button
                             onClick={() => {
                                 handleDeleteComment(article?._id, id);
@@ -48,11 +50,11 @@ export default function Comment({ author, content, id, isCommentOfCurrUser }) {
                         >
                             E
                         </button>
-                    </>
+                    </div>
                 )}
 
                 {isEditing && (
-                    <>
+                    <div>
                         <input
                             type="text"
                             value={newComment}
@@ -65,7 +67,7 @@ export default function Comment({ author, content, id, isCommentOfCurrUser }) {
                         >
                             Submit
                         </button>
-                    </>
+                    </div>
                 )}
             </div>
         </div>
