@@ -10,18 +10,21 @@ const ArticleContextProvider = (props) => {
     const { authAxios, currUser } = useContext(ApiContext);
     const history = useHistory();
 
+    // forming an article with authentication property of each comment
     const createUpdatedArticle = (updatedArticle) => {
         updatedArticle?.comments.forEach((e) => {
             // compare author of comment with currently authenticated user
             // and check if they belong to each other
-            e.isCommentOfCurrUser = e?.author?.id === currUser._id;
+            e.isCommentOfCurrUser = e?.author?.id === currUser?._id;
         });
 
         setArticle(updatedArticle);
         setIsLoading(false);
     };
 
+    // getting a specific article from server
     const getArticle = (postId) => {
+        console.log(postId);
         setIsLoading(true);
         authAxios
             .get(`posts/${postId}`)
@@ -33,6 +36,7 @@ const ArticleContextProvider = (props) => {
             });
     };
 
+    // sending deletion request to server
     const handleDeletePost = (postId) => {
         authAxios
             .delete(`posts/${postId}`)
@@ -45,6 +49,7 @@ const ArticleContextProvider = (props) => {
             });
     };
 
+    // send edited post to server to edit a post in db
     const handleEditPost = (postId, newArticleTitle, newArticleContent) => {
         setIsLoading(true);
         authAxios
@@ -57,13 +62,14 @@ const ArticleContextProvider = (props) => {
             .then((res) => {
                 console.log(res);
                 // TODO: doesn't return complete post
-                // setUpdatedArticle(res.data.editedPost);
+                createUpdatedArticle(res?.data?.editedPost);
             })
             .catch((err) => {
                 console.log(err);
             });
     };
 
+    // delete a comment in a post from db
     const handleDeleteComment = (postId, commentId) => {
         setIsLoading(true);
         authAxios
@@ -77,6 +83,7 @@ const ArticleContextProvider = (props) => {
             });
     };
 
+    // edit a comment in a post in db
     const handleEditComment = (commentId, postId, newCommentText) => {
         setIsLoading(true);
         authAxios
@@ -91,6 +98,7 @@ const ArticleContextProvider = (props) => {
             });
     };
 
+    // handle formation of new comment
     const handleNewComment = (postId, newCommentText, setNewCommentContent) => {
         authAxios
             .post(`posts/${postId}/comments`, { text: newCommentText })

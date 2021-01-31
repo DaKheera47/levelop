@@ -27,7 +27,7 @@ export default function Home() {
             key={e?._id}
             author={e?.author?.username}
             title={e?.title}
-            imgSrc="https://www.online-tech-tips.com/wp-content/uploads/2018/10/touch-typing-tips.jpg"
+            imgSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png"
             imgAlt="image"
             postUrl={`posts/${e?._id}`}
         />

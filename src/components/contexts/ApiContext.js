@@ -7,7 +7,7 @@ export const ApiContext = createContext();
 
 const ApiContextProvider = (props) => {
     const cookies = new Cookies();
-    const preUrl = "http://localhost:6969";
+    const preUrl = "http://ammar-d2ac8c52.localhost.run";
     const history = useHistory();
     const authAxios = axios.create({
         baseURL: preUrl,
@@ -29,8 +29,9 @@ const ApiContextProvider = (props) => {
 
     axios.defaults.withCredentials = true;
 
-    const checkIsAuthenticated = () => {
-        setIsAuthenticated(!!cookies.get("jwt"));
+    // refresh authentication state based on jwt cookie
+    const refreshAuthentication = () => {
+        setIsAuthenticated(!!cookies.get("jwt") && currUser);
     };
 
     const SignUp = (email, password, username, fullName) => {
@@ -44,7 +45,7 @@ const ApiContextProvider = (props) => {
             .then((res) => {
                 //handle success
                 cookies.set("jwt", res?.data?.token);
-                checkIsAuthenticated();
+                refreshAuthentication();
 
                 localStorage.setItem(
                     "user",
@@ -62,7 +63,7 @@ const ApiContextProvider = (props) => {
                     }
                 }
 
-                checkIsAuthenticated();
+                refreshAuthentication();
                 history.push("/");
             })
             .catch((res) => {
@@ -80,32 +81,27 @@ const ApiContextProvider = (props) => {
             })
             .then((res) => {
                 //handle success
+                // setting newly sent jwt as cookie
                 cookies.set("jwt", res?.data?.token, { path: "/" });
-                console.log(JSON.stringify(res?.data?.user));
+                // set the current user in localstorage as string
                 localStorage.setItem("user", JSON.stringify(res?.data?.user));
 
                 if (currUser) {
-                    let userFromLocal = JSON.parse(
-                        localStorage.getItem("user")
-                    );
-                    if (userFromLocal) {
-                        setCurrUser(userFromLocal);
-                    } else {
-                        setCurrUser(res.data.user);
-                    }
+                    // if no user in localstorage then set new user as currUser
+                    setCurrUser(res?.data?.user);
                 }
-                checkIsAuthenticated();
+                refreshAuthentication();
                 history.push("/");
             })
-            .catch((res) => {
+            .catch((e) => {
                 //handle error
-                console.log(res);
+                console.log(e);
             });
     };
 
     const Logout = () => {
         cookies.set("jwt", "", { path: "/" });
-        checkIsAuthenticated();
+        refreshAuthentication();
         setCurrUser({});
         history.push("/login");
     };
@@ -121,7 +117,7 @@ const ApiContextProvider = (props) => {
                 currUser,
                 authAxios,
                 preUrlAxios,
-                checkIsAuthenticated,
+                checkIsAuthenticated: refreshAuthentication,
                 isAuthenticated,
             }}
         >
