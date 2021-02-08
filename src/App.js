@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { PostsContextProvider } from "./components/contexts/AllPostsContext";
 import { ApiContextProvider } from "./components/contexts/ApiContext";
 import { ArticleContextProvider } from "./components/contexts/ArticleContext";
