@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { SideBarContext } from "../../contexts/SideBarContext";
+import { SideBarContext } from "../../../contexts/SideBarContext";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgClose } from "react-icons/cg";
 import SideBarContent from "../../molecules/SideBarContent/SideBarContent";
@@ -8,7 +8,7 @@ import SideBarProfile from "../../molecules/SideBarProfile/SideBarProfile";
 import Cookies from "universal-cookie";
 
 import "./SideBar.sass";
-import { ApiContext } from "../../contexts/ApiContext";
+import { ApiContext } from "../../../contexts/ApiContext";
 
 export default function SideBar() {
     const { toggleSideBar, isSideBarOpen, closeSideBar } = useContext(

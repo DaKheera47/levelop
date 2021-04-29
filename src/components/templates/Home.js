@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link, NavLink } from "react-router-dom";
-import { PostsContext } from "../contexts/AllPostsContext";
-import { ApiContext } from "../contexts/ApiContext";
+import { PostsContext } from "../../contexts/AllPostsContext";
+import { ApiContext } from "../../contexts/ApiContext";
 import HomeProfile from "../molecules/HomeProfile/HomeProfile";
 import Post from "../molecules/Post/Post";
 import "./homeStyle.sass";

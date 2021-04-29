@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaRegPlusSquare } from "react-icons/fa";
-import { SideBarContext } from "../../contexts/SideBarContext";
-import { ApiContext } from "../../contexts/ApiContext";
+import { SideBarContext } from "../../../contexts/SideBarContext";
+import { ApiContext } from "../../../contexts/ApiContext";
 
 export default function SideBarContent({ navLinksPaths, isAuthenticated }) {
     const { closeSideBar } = useContext(SideBarContext);
