@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
-import { NewPostsContext } from "../contexts/NewPostContext";
+import { NewPostsContext } from "../../contexts/NewPostContext";
 import { useHistory } from "react-router-dom";
 import ArticleInput from "../molecules/ArticleInput/ArticleInput";
 import "./NewArticle.sass";
+import handleChange from "../../helpers/handleInputChange"
 
 export default function NewArticle() {
     const history = useHistory();
@@ -11,10 +12,6 @@ export default function NewArticle() {
     const [articleContent, setArticleContent] = useState("");
 
     const { makeNewPost, isLoading } = useContext(NewPostsContext);
-
-    const handleChange = (evt, changer) => {
-        changer(evt.target.value);
-    };
 
     const handleCancel = () => {
         setArticleContent("");

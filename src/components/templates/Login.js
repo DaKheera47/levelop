@@ -1,19 +1,16 @@
 import React, { useContext, useState } from "react";
 import "./Login.sass";
+import handleChange from "../../helpers/handleInputChange"
 
 // components and contexts
 import CustomInputField from "../molecules/CustomInputField/CustomInputField";
-import { ApiContext } from "../contexts/ApiContext";
+import { ApiContext } from "../../contexts/ApiContext";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const { Login } = useContext(ApiContext);
-
-    const handleChange = (evt, changer) => {
-        changer(evt.target.value);
-    };
 
     const handleLogin = (evt) => {
         evt.preventDefault();

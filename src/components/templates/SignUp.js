@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import "./Login.sass";
 import CustomInputField from "../molecules/CustomInputField/CustomInputField";
-import { ApiContext } from "../contexts/ApiContext";
+import { ApiContext } from "../../contexts/ApiContext";
+import handleChange from "../../helpers/handleInputChange"
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -10,10 +11,6 @@ export default function Login() {
     const [fullName, setFullName] = useState("");
 
     const { SignUp } = useContext(ApiContext);
-
-    const handleChange = (evt, changer) => {
-        changer(evt.target.value);
-    };
 
     const handleSignUp = (evt) => {
         evt.preventDefault();

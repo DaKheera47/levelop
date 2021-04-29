@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import Title from "../../atoms/Title";
-import { ArticleContext } from "../../contexts/ArticleContext";
+import { ArticleContext } from "../../../contexts/ArticleContext";
 import "./Comment.sass";
+import handleChange from "../../../helpers/handleInputChange"
 
 export default function Comment({ author, content, id, isCommentOfCurrUser }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -9,10 +10,6 @@ export default function Comment({ author, content, id, isCommentOfCurrUser }) {
         ArticleContext
     );
     const [newComment, setNewComment] = useState("");
-
-    const handleChange = (evt, changer) => {
-        changer(evt.target.value);
-    };
 
     return (
         <div>
