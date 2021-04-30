@@ -1,15 +1,14 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";import { PostsContextProvider } from "./contexts/AllPostsContext";
-import { ApiContextProvider } from "./contexts/ApiContext";
-import { ArticleContextProvider } from "./contexts/ArticleContext";
-import { ArticleCommentsContextProvider } from "./contexts/ArticleCommentsContext"
+import { Route, Switch } from "react-router-dom";
 // contexts
+import { PostsContextProvider } from "./contexts/AllPostsContext";
+import { ApiContextProvider } from "./contexts/ApiContext";
 import { NewArticleContextProvider } from "./contexts/NewPostContext";
 import { SideBarProvider } from "./contexts/SideBarContext";
 // components
 import NavBar from "./components/organisms/Nav/Nav";
-import Article from "./components/templates/Article";
 // pages
+import Article from "./components/templates/Article";
 import Home from "./components/templates/Home";
 import Login from "./components/templates/Login";
 import NewArticle from "./components/templates/NewArticle";
@@ -44,11 +43,7 @@ export default function App() {
 
                         <PostsContextProvider>
                             <Route exact path="/posts/:id">
-                                <ArticleCommentsContextProvider>
-                                    <ArticleContextProvider>
-                                        <Article />
-                                    </ArticleContextProvider>
-                                </ArticleCommentsContextProvider>
+                                <Article />
                             </Route>
 
                             <Route exact path="/">
