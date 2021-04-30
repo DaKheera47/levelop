@@ -1,15 +1,11 @@
 import React from "react";
-import "./AuthorArticle.sass"
+import css from "./AuthorArticle.module.sass";
 
 export default function AuthorArticle({ author, time, imageSrc }) {
     return (
-        <div className="article-author-container">
-            <img
-                className="article-author-image"
-                src={imageSrc}
-                alt="Profile"
-            />
-            <p className="article-author-author">
+        <div className={`${css.container}`}>
+            <img className={`${css.image}`} src={imageSrc} alt="Profile" />
+            <p className={`${css.author}`}>
                 {author} - {time} min
             </p>
         </div>
