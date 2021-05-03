@@ -103,6 +103,7 @@ const ApiContextProvider = (props) => {
 
     const Logout = () => {
         cookies.set("jwt", "", { path: "/" });
+        localStorage.setItem("user", JSON.stringify({}));
         refreshAuthentication();
         setCurrUser({});
         history.push("/login");
@@ -129,88 +130,3 @@ const ApiContextProvider = (props) => {
 };
 
 export { ApiContextProvider, authAxios };
-
-// const posts = [
-//     {
-//         foundPost: {
-//             author: {
-//                 id: "5fed39446316722ed8dad235",
-//                 username: "saltshakershamila",
-//             },
-//             comments: [
-//                 {
-//                     author: {
-//                         id: "6016d19bab632e0017c3730a",
-//                         username: "@DaKheera47",
-//                     },
-//                     _id: "6016d1aeab632e0017c3730b",
-//                     text: "uh",
-//                     __v: 0,
-//                 },
-//                 {
-//                     author: {
-//                         id: "5febe42936409726c1ba9b09",
-//                         username: "zainabus",
-//                     },
-//                     _id: "6020ad67de22a10017589981",
-//                     text: "This is a comment from my phone!",
-//                     __v: 0,
-//                 },
-//                 {
-//                     author: {
-//                         id: "6020b014de22a10017589982",
-//                         username: "ammaros",
-//                     },
-//                     _id: "6020b027de22a10017589983",
-//                     text: "Amazing Read ngl!",
-//                     __v: 0,
-//                 },
-//                 {
-//                     author: {
-//                         id: "5fed39446316722ed8dad235",
-//                         username: "saltshakershamila",
-//                     },
-//                     _id: "60890ac343ca840017668cf3",
-//                     text: "this is a comment by salt shaker shamila",
-//                     __v: 0,
-//                 },
-//             ],
-//             _id: "5ff138ef8b4b321ccc854b10",
-//             title:
-//                 "This is another post that is from another user which is salt shaker shamila",
-//             content:
-//                 "This is the main content of this post that will be very useful to us in the future that will mean that we might have some excellent content on this site in the future",
-//             __v: 13,
-//         },
-//     },
-
-//     {
-//         foundPost: {
-//             author: { id: "5febe42936409726c1ba9b09", username: "zainabus" },
-//             comments: [
-//                 {
-//                     author: {
-//                         id: "5febe42936409726c1ba9b09",
-//                         username: "zainabus",
-//                     },
-//                     _id: "5ff5df12d2b7ad17c84c20b5",
-//                     text: "Binig Bong?",
-//                     __v: 0,
-//                 },
-//                 {
-//                     author: {
-//                         id: "5febe42936409726c1ba9b09",
-//                         username: "zainabus",
-//                     },
-//                     _id: "5ff5e208d2b7ad17c84c20b6",
-//                     text: "Zain brain no",
-//                     __v: 0,
-//                 },
-//             ],
-//             _id: "5ff5d055d2b7ad17c84c20af",
-//             title: "This is a new test post",
-//             content: "bruh abcde",
-//             __v: 6,
-//         },
-//     },
-// ];
