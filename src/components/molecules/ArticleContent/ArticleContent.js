@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { getArticle, handleDeletePost } from "../../../apiCalls/articleCall";
 import ArticleHeader from "../ArticleHeader/ArticleHeader";
 import ArticleEditingView from "../../organisms/ArticleEditingView/ArticleEditingView";
+import ArticleComments from "../../molecules/ArticleComments/ArticleComments";
 
 export default function ArticleContent() {
     const [article, setArticle] = useState({});
@@ -63,6 +64,12 @@ export default function ArticleContent() {
             "https://miro.medium.com/fit/c/56/56/1*AwBz4NW9_M45J-sBlmH-lA.png",
     };
 
+    const articleCommentsProps = {
+        setIsArticleLoading,
+        setArticle,
+        article,
+    };
+
     return (
         <>
             {isArticleLoading ? (
@@ -102,6 +109,8 @@ export default function ArticleContent() {
                             </div>
                         </>
                     )}
+
+                    <ArticleComments props={articleCommentsProps} />
                 </>
             )}
         </>

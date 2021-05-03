@@ -1,18 +1,67 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Title from "../../atoms/Title";
-import { ArticleContext } from "../../../contexts/ArticleContext";
 import "./Comment.sass";
-import handleChange from "../../../helpers/handleInputChange"
+import handleChange from "../../../helpers/handleInputChange";
+import {
+    handleDeleteComment,
+    handleEditComment,
+} from "../../../apiCalls/commentCall";
+import { useParams } from "react-router-dom";
 
-export default function Comment({ author, content, id, isCommentOfCurrUser }) {
+export default function Comment({ props }) {
+    const {
+        author,
+        content,
+        id: commentId,
+        isCommentOfCurrUser,
+        setIsArticleLoading,
+        setArticle,
+    } = props;
+
     const [isEditing, setIsEditing] = useState(false);
-    const { article, handleDeleteComment, handleEditComment } = useContext(
-        ArticleContext
-    );
-    const [newComment, setNewComment] = useState("");
+    const [updatedComment, setUpdatedComment] = useState("");
+    let { id: postId } = useParams();
+
+    const deleteComment = async () => {
+        setIsArticleLoading(true);
+        let article = await handleDeleteComment(postId, commentId).catch(
+            (e) => {
+                setIsArticleLoading(false);
+                return;
+            }
+        );
+
+        console.log(article);
+
+        if (!article.error) {
+            setArticle(article.data);
+        }
+
+        setIsArticleLoading(false);
+    };
+
+    const editComment = async () => {
+        setIsArticleLoading(true);
+
+        let res = await handleEditComment(
+            postId,
+            commentId,
+            updatedComment
+        ).catch((e) => {
+            setIsArticleLoading(false);
+            return;
+        });
+
+        console.log(res);
+
+        if (!res.error) {
+            setArticle(res.data);
+            setIsArticleLoading(false);
+        }
+    };
 
     return (
-        <div>
+        <>
             <hr color="#fa6400" size="1" />
             <div className="comment-body">
                 <div className="comment-profileUrl-container">
@@ -32,10 +81,10 @@ export default function Comment({ author, content, id, isCommentOfCurrUser }) {
                 </div>
 
                 {isCommentOfCurrUser && (
-                    <div>
+                    <>
                         <button
                             onClick={() => {
-                                handleDeleteComment(article?._id, id);
+                                deleteComment();
                             }}
                         >
                             D
@@ -47,26 +96,28 @@ export default function Comment({ author, content, id, isCommentOfCurrUser }) {
                         >
                             E
                         </button>
-                    </div>
+                    </>
                 )}
 
                 {isEditing && (
-                    <div>
+                    <>
                         <input
                             type="text"
-                            value={newComment}
-                            onChange={(evt) => handleChange(evt, setNewComment)}
+                            value={updatedComment}
+                            onChange={(evt) =>
+                                handleChange(evt, setUpdatedComment)
+                            }
                         />
                         <button
                             onClick={() => {
-                                handleEditComment(id, article?._id, newComment);
+                                editComment();
                             }}
                         >
                             Submit
                         </button>
-                    </div>
+                    </>
                 )}
             </div>
-        </div>
+        </>
     );
 }
