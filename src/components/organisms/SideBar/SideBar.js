@@ -63,13 +63,12 @@ export default function SideBar() {
                         ></div>
                         <motion.div
                             className="side-bar"
-                            initial={{ translateX: -500 }}
+                            initial={{ translateX: -250 }}
                             animate={{ translateX: 0 }}
                             transition={{
-                                duration: 0.3,
-                                ease: [0.55, 0.79, 0.55, 0.81],
+                                duration: 0.2,
                             }}
-                            exit={{ translateX: -500 }}
+                            exit={{ translateX: -250 }}
                         >
                             {isAuthenticated ? (
                                 <SideBarProfile
